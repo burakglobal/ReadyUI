@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>instructionsInfo</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>straight</string>
+			<key>text</key>
+			<string>המשך ישר</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_left</string>
+			<key>text</key>
+			<string>פנה שמאלה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>left_hall</string>
+			<key>text</key>
+			<string>תצמד לשמאל</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_right</string>
+			<key>text</key>
+			<string>פנה ימינה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>right_hall</string>
+			<key>text</key>
+			<string>תצמד לימין</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_up</string>
+			<key>text</key>
+			<string>עלה קומה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_down</string>
+			<key>text</key>
+			<string>רד קומה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>destination3</string>
+			<key>text</key>
+			<string>הגעת ליעד</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_back</string>
+			<key>text</key>
+			<string>תסתובב לאחורה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>recalculate</string>
+			<key>text</key>
+			<string>מחשב נתיב</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_path</string>
+			<key>text</key>
+			<string>המשך ליציאה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_path</string>
+			<key>text</key>
+			<string>המשך לכניסה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_destination</string>
+			<key>text</key>
+			<string>המשך לכיוון הנתיב</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_up</string>
+			<key>text</key>
+			<string>עלה קומה</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_down</string>
+			<key>text</key>
+			<string>רד קומה</string>
+		</dict>
+	</array>
+	<key>continue_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>ליד</string>
+	</dict>
+	<key>last_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>בהמשך</string>
+	</dict>
+	<key>last_simplified_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>המשך לכיוון הנתיב</string>
+	</dict>
+</dict>
+</plist>

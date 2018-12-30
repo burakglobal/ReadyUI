@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1AE572681F4712D600DC7159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE572671F4712D600DC7159 /* AppDelegate.swift */; };
+		1AE5726D1F4712D600DC7159 /* SpreoReadyUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5726B1F4712D600DC7159 /* SpreoReadyUI.storyboard */; };
+		1AE5726F1F4712D600DC7159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5726E1F4712D600DC7159 /* Assets.xcassets */; };
+		1AE5727D1F4713D500DC7159 /* SpreoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5727A1F4713D500DC7159 /* SpreoMapViewController.swift */; };
+		1AE5727F1F4713D500DC7159 /* SpreoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5727C1F4713D500DC7159 /* SpreoLoginViewController.swift */; };
+		55BEC3322125D8E5005158EA /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BEC3312125D8E5005158EA /* GoogleMaps.framework */; };
+		55C7CB7F2023ABFD003D05D7 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7CB792023ABFD003D05D7 /* GoogleMapsCore.framework */; };
+		55C7CB802023ABFD003D05D7 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7CB7A2023ABFD003D05D7 /* GoogleMapsBase.framework */; };
+		55C7CB812023ABFD003D05D7 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55C7CB7B2023ABFD003D05D7 /* GoogleMaps.bundle */; };
+		55C7CB822023ABFD003D05D7 /* IndoorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C7CB7C2023ABFD003D05D7 /* IndoorKit.framework */; };
+		55C7CB842023ABFD003D05D7 /* IndoorKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55C7CB7E2023ABFD003D05D7 /* IndoorKit.bundle */; };
+		9728926521D69DEC000A711E /* SpreoInstructionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728926321D69DEC000A711E /* SpreoInstructionTableViewCell.swift */; };
+		9728926621D69DEC000A711E /* SpreoInstructionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9728926421D69DEC000A711E /* SpreoInstructionTableViewCell.xib */; };
+		9728926921D69DFE000A711E /* SpreoInstructionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728926721D69DFD000A711E /* SpreoInstructionTableViewController.swift */; };
+		9728926A21D69DFE000A711E /* SpreoInstructionTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9728926821D69DFE000A711E /* SpreoInstructionTableViewController.xib */; };
+		9728926E21D6A2C5000A711E /* SpreoInstructionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728926C21D6A2C5000A711E /* SpreoInstructionPopupViewController.swift */; };
+		9728926F21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9728926D21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib */; };
+		9728927121D6B07A000A711E /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9728927021D6B07A000A711E /* SwiftyJSON.swift */; };
+		9780A27F21D8674C00093E5A /* SpreoFromToTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780A27D21D8674C00093E5A /* SpreoFromToTableViewCell.swift */; };
+		9780A28021D8674C00093E5A /* SpreoFromToTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9780A27E21D8674C00093E5A /* SpreoFromToTableViewCell.xib */; };
+		978770AB21D56C0300FCEEC9 /* SpreoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978770AA21D56C0300FCEEC9 /* SpreoBanner.swift */; };
+		978770B021D56C2600FCEEC9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 978770AE21D56C2600FCEEC9 /* MBProgressHUD.m */; };
+		978770B221D5795C00FCEEC9 /* SpreoExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978770B121D5795C00FCEEC9 /* SpreoExtentions.swift */; };
+		97885F5C21D5B828002ADFBC /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97885F5921D5B828002ADFBC /* CustomCalloutView.xib */; };
+		97885F5D21D5B828002ADFBC /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97885F5A21D5B828002ADFBC /* CustomCalloutView.m */; };
+		97B6C15C21D8241F00324C4A /* SpreoFromToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */; };
+		97B6C15D21D8241F00324C4A /* SpreoFromToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97B6C15B21D8241F00324C4A /* SpreoFromToViewController.xib */; };
+		97B6C16021D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6C15E21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift */; };
+		97B6C16121D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97B6C15F21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib */; };
+		97C9E17121D7F5730082781F /* SpreoPoiDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C9E16F21D7F5730082781F /* SpreoPoiDetailsTableViewController.swift */; };
+		97C9E17221D7F5730082781F /* SpreoPoiDetailsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C9E17021D7F5730082781F /* SpreoPoiDetailsTableViewController.xib */; };
+		97C9E17521D7F5AE0082781F /* SpreoPoiDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C9E17321D7F5AE0082781F /* SpreoPoiDetailTableViewCell.swift */; };
+		97C9E17621D7F5AE0082781F /* SpreoPoiDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C9E17421D7F5AE0082781F /* SpreoPoiDetailTableViewCell.xib */; };
+		97D2F9B521D93FB400EB9E61 /* SpreoLocationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2F9B321D93FB400EB9E61 /* SpreoLocationPopupViewController.swift */; };
+		97D2F9B621D93FB400EB9E61 /* SpreoLocationPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97D2F9B421D93FB400EB9E61 /* SpreoLocationPopupViewController.xib */; };
+		97D6223821D561810016F497 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D6223721D561810016F497 /* Launch Screen.storyboard */; };
+		97DB480A21D59AC400716555 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB480921D59AC400716555 /* HistoryTableViewCell.swift */; };
+		97DB480C21D59AD400716555 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB480B21D59AD400716555 /* MenuTableViewCell.swift */; };
+		97DB480E21D5A8D000716555 /* SpreoSearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB480D21D5A8D000716555 /* SpreoSearchData.swift */; };
+		97F0EA4F21D5D2E30058501C /* TYLevelPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA4A21D5D2E30058501C /* TYLevelPicker.m */; };
+		97F0EA5021D5D2E30058501C /* LevelPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA4D21D5D2E30058501C /* LevelPickerCell.m */; };
+		97F0EA5121D5D2E30058501C /* LevelPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F0EA4E21D5D2E30058501C /* LevelPickerCell.xib */; };
+		97F0EA5421D5D30D0058501C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5221D5D30D0058501C /* BaseViewController.m */; };
+		97F0EA6221D5D33C0058501C /* NSString+Soundex.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5521D5D33C0058501C /* NSString+Soundex.m */; };
+		97F0EA6321D5D33C0058501C /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5921D5D33C0058501C /* UIImage+Resize.m */; };
+		97F0EA6421D5D33C0058501C /* UIViewController+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5A21D5D33C0058501C /* UIViewController+Appearance.m */; };
+		97F0EA6521D5D33C0058501C /* UIColor + HexToRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5C21D5D33C0058501C /* UIColor + HexToRGB.m */; };
+		97F0EA6621D5D33C0058501C /* UIView+FNSetFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA5E21D5D33C0058501C /* UIView+FNSetFrame.m */; };
+		97F0EA6721D5D33C0058501C /* UIViewController+NavigationButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA6021D5D33C0058501C /* UIViewController+NavigationButtons.m */; };
+		97F0EA6A21D5D3980058501C /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA6821D5D3980058501C /* BaseTableCell.m */; };
+		97F0EA6D21D5D3C60058501C /* FloorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0EA6B21D5D3C60058501C /* FloorModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1AE572641F4712D600DC7159 /* SpreoReadyUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpreoReadyUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AE572671F4712D600DC7159 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1AE5726C1F4712D600DC7159 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SpreoReadyUI.storyboard; sourceTree = "<group>"; };
+		1AE5726E1F4712D600DC7159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AE572731F4712D600DC7159 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AE572791F47132E00DC7159 /* SpreoReadyUI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpreoReadyUI-Bridging-Header.h"; sourceTree = "<group>"; };
+		1AE5727A1F4713D500DC7159 /* SpreoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreoMapViewController.swift; sourceTree = "<group>"; };
+		1AE5727C1F4713D500DC7159 /* SpreoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreoLoginViewController.swift; sourceTree = "<group>"; };
+		55BEC3312125D8E5005158EA /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		55C7CB792023ABFD003D05D7 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
+		55C7CB7A2023ABFD003D05D7 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
+		55C7CB7B2023ABFD003D05D7 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		55C7CB7C2023ABFD003D05D7 /* IndoorKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IndoorKit.framework; sourceTree = "<group>"; };
+		55C7CB7E2023ABFD003D05D7 /* IndoorKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IndoorKit.bundle; sourceTree = "<group>"; };
+		9728926321D69DEC000A711E /* SpreoInstructionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoInstructionTableViewCell.swift; sourceTree = "<group>"; };
+		9728926421D69DEC000A711E /* SpreoInstructionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoInstructionTableViewCell.xib; sourceTree = "<group>"; };
+		9728926721D69DFD000A711E /* SpreoInstructionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoInstructionTableViewController.swift; sourceTree = "<group>"; };
+		9728926821D69DFE000A711E /* SpreoInstructionTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoInstructionTableViewController.xib; sourceTree = "<group>"; };
+		9728926C21D6A2C5000A711E /* SpreoInstructionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoInstructionPopupViewController.swift; sourceTree = "<group>"; };
+		9728926D21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoInstructionPopupViewController.xib; sourceTree = "<group>"; };
+		9728927021D6B07A000A711E /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		9780A27D21D8674C00093E5A /* SpreoFromToTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoFromToTableViewCell.swift; sourceTree = "<group>"; };
+		9780A27E21D8674C00093E5A /* SpreoFromToTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoFromToTableViewCell.xib; sourceTree = "<group>"; };
+		978770AA21D56C0300FCEEC9 /* SpreoBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreoBanner.swift; sourceTree = "<group>"; };
+		978770AE21D56C2600FCEEC9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		978770AF21D56C2600FCEEC9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		978770B121D5795C00FCEEC9 /* SpreoExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoExtentions.swift; sourceTree = "<group>"; };
+		97885F5921D5B828002ADFBC /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		97885F5A21D5B828002ADFBC /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
+		97885F5B21D5B828002ADFBC /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
+		97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoFromToViewController.swift; sourceTree = "<group>"; };
+		97B6C15B21D8241F00324C4A /* SpreoFromToViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoFromToViewController.xib; sourceTree = "<group>"; };
+		97B6C15E21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoFromToSearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		97B6C15F21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoFromToSearchResultsTableViewController.xib; sourceTree = "<group>"; };
+		97C9E16F21D7F5730082781F /* SpreoPoiDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoPoiDetailsTableViewController.swift; sourceTree = "<group>"; };
+		97C9E17021D7F5730082781F /* SpreoPoiDetailsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoPoiDetailsTableViewController.xib; sourceTree = "<group>"; };
+		97C9E17321D7F5AE0082781F /* SpreoPoiDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoPoiDetailTableViewCell.swift; sourceTree = "<group>"; };
+		97C9E17421D7F5AE0082781F /* SpreoPoiDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoPoiDetailTableViewCell.xib; sourceTree = "<group>"; };
+		97D2F9B321D93FB400EB9E61 /* SpreoLocationPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoLocationPopupViewController.swift; sourceTree = "<group>"; };
+		97D2F9B421D93FB400EB9E61 /* SpreoLocationPopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoLocationPopupViewController.xib; sourceTree = "<group>"; };
+		97D6223721D561810016F497 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		97DB480921D59AC400716555 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		97DB480B21D59AD400716555 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		97DB480D21D5A8D000716555 /* SpreoSearchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreoSearchData.swift; sourceTree = "<group>"; };
+		97F0EA4A21D5D2E30058501C /* TYLevelPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYLevelPicker.m; sourceTree = "<group>"; };
+		97F0EA4B21D5D2E30058501C /* TYLevelPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYLevelPicker.h; sourceTree = "<group>"; };
+		97F0EA4C21D5D2E30058501C /* LevelPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelPickerCell.h; sourceTree = "<group>"; };
+		97F0EA4D21D5D2E30058501C /* LevelPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelPickerCell.m; sourceTree = "<group>"; };
+		97F0EA4E21D5D2E30058501C /* LevelPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelPickerCell.xib; sourceTree = "<group>"; };
+		97F0EA5221D5D30D0058501C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		97F0EA5321D5D30D0058501C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		97F0EA5521D5D33C0058501C /* NSString+Soundex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Soundex.m"; sourceTree = "<group>"; };
+		97F0EA5621D5D33C0058501C /* UIColor + HexToRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor + HexToRGB.h"; sourceTree = "<group>"; };
+		97F0EA5721D5D33C0058501C /* UIView+FNSetFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FNSetFrame.h"; sourceTree = "<group>"; };
+		97F0EA5821D5D33C0058501C /* UIViewController+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Appearance.h"; sourceTree = "<group>"; };
+		97F0EA5921D5D33C0058501C /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		97F0EA5A21D5D33C0058501C /* UIViewController+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Appearance.m"; sourceTree = "<group>"; };
+		97F0EA5B21D5D33C0058501C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		97F0EA5C21D5D33C0058501C /* UIColor + HexToRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor + HexToRGB.m"; sourceTree = "<group>"; };
+		97F0EA5D21D5D33C0058501C /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		97F0EA5E21D5D33C0058501C /* UIView+FNSetFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FNSetFrame.m"; sourceTree = "<group>"; };
+		97F0EA5F21D5D33C0058501C /* NSString+Soundex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Soundex.h"; sourceTree = "<group>"; };
+		97F0EA6021D5D33C0058501C /* UIViewController+NavigationButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationButtons.m"; sourceTree = "<group>"; };
+		97F0EA6121D5D33C0058501C /* UIViewController+NavigationButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationButtons.h"; sourceTree = "<group>"; };
+		97F0EA6821D5D3980058501C /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
+		97F0EA6921D5D3980058501C /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
+		97F0EA6B21D5D3C60058501C /* FloorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloorModel.m; sourceTree = "<group>"; };
+		97F0EA6C21D5D3C60058501C /* FloorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloorModel.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1AE572611F4712D600DC7159 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55C7CB7F2023ABFD003D05D7 /* GoogleMapsCore.framework in Frameworks */,
+				55C7CB802023ABFD003D05D7 /* GoogleMapsBase.framework in Frameworks */,
+				55BEC3322125D8E5005158EA /* GoogleMaps.framework in Frameworks */,
+				55C7CB822023ABFD003D05D7 /* IndoorKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A29A1171F47160E007CEC31 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55BEC3312125D8E5005158EA /* GoogleMaps.framework */,
+				55C7CB7B2023ABFD003D05D7 /* GoogleMaps.bundle */,
+				55C7CB7A2023ABFD003D05D7 /* GoogleMapsBase.framework */,
+				55C7CB792023ABFD003D05D7 /* GoogleMapsCore.framework */,
+				55C7CB7E2023ABFD003D05D7 /* IndoorKit.bundle */,
+				55C7CB7C2023ABFD003D05D7 /* IndoorKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AE5725B1F4712D600DC7159 = {
+			isa = PBXGroup;
+			children = (
+				1AE572661F4712D600DC7159 /* SpreoReadyUI */,
+				1AE572651F4712D600DC7159 /* Products */,
+				1A29A1171F47160E007CEC31 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1AE572651F4712D600DC7159 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AE572641F4712D600DC7159 /* SpreoReadyUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AE572661F4712D600DC7159 /* SpreoReadyUI */ = {
+			isa = PBXGroup;
+			children = (
+				978770AD21D56C1400FCEEC9 /* StaticLibs */,
+				97D6223721D561810016F497 /* Launch Screen.storyboard */,
+				1AE5727A1F4713D500DC7159 /* SpreoMapViewController.swift */,
+				1AE5727C1F4713D500DC7159 /* SpreoLoginViewController.swift */,
+				1AE572791F47132E00DC7159 /* SpreoReadyUI-Bridging-Header.h */,
+				1AE572671F4712D600DC7159 /* AppDelegate.swift */,
+				1AE5726B1F4712D600DC7159 /* SpreoReadyUI.storyboard */,
+				1AE5726E1F4712D600DC7159 /* Assets.xcassets */,
+				1AE572731F4712D600DC7159 /* Info.plist */,
+			);
+			path = SpreoReadyUI;
+			sourceTree = "<group>";
+		};
+		978770AC21D56C0F00FCEEC9 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				97B6C15921D823FF00324C4A /* FromTo */,
+				97DB480921D59AC400716555 /* HistoryTableViewCell.swift */,
+				97DB480B21D59AD400716555 /* MenuTableViewCell.swift */,
+				97DB480D21D5A8D000716555 /* SpreoSearchData.swift */,
+				978770AA21D56C0300FCEEC9 /* SpreoBanner.swift */,
+				978770B121D5795C00FCEEC9 /* SpreoExtentions.swift */,
+				9728926321D69DEC000A711E /* SpreoInstructionTableViewCell.swift */,
+				9728926421D69DEC000A711E /* SpreoInstructionTableViewCell.xib */,
+				9728926721D69DFD000A711E /* SpreoInstructionTableViewController.swift */,
+				9728926821D69DFE000A711E /* SpreoInstructionTableViewController.xib */,
+				9728926C21D6A2C5000A711E /* SpreoInstructionPopupViewController.swift */,
+				9728926D21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib */,
+				9728927021D6B07A000A711E /* SwiftyJSON.swift */,
+				97C9E16F21D7F5730082781F /* SpreoPoiDetailsTableViewController.swift */,
+				97C9E17021D7F5730082781F /* SpreoPoiDetailsTableViewController.xib */,
+				97C9E17321D7F5AE0082781F /* SpreoPoiDetailTableViewCell.swift */,
+				97C9E17421D7F5AE0082781F /* SpreoPoiDetailTableViewCell.xib */,
+				97D2F9B321D93FB400EB9E61 /* SpreoLocationPopupViewController.swift */,
+				97D2F9B421D93FB400EB9E61 /* SpreoLocationPopupViewController.xib */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		978770AD21D56C1400FCEEC9 /* StaticLibs */ = {
+			isa = PBXGroup;
+			children = (
+				97C9E17721D7FD420082781F /* 3rdParty */,
+				978770AC21D56C0F00FCEEC9 /* UIComponents */,
+			);
+			name = StaticLibs;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		97B6C15921D823FF00324C4A /* FromTo */ = {
+			isa = PBXGroup;
+			children = (
+				97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */,
+				97B6C15B21D8241F00324C4A /* SpreoFromToViewController.xib */,
+				97B6C15E21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift */,
+				97B6C15F21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib */,
+				9780A27D21D8674C00093E5A /* SpreoFromToTableViewCell.swift */,
+				9780A27E21D8674C00093E5A /* SpreoFromToTableViewCell.xib */,
+			);
+			path = FromTo;
+			sourceTree = "<group>";
+		};
+		97C9E17721D7FD420082781F /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				97F0EA6C21D5D3C60058501C /* FloorModel.h */,
+				97F0EA6B21D5D3C60058501C /* FloorModel.m */,
+				97F0EA6921D5D3980058501C /* BaseTableCell.h */,
+				97F0EA6821D5D3980058501C /* BaseTableCell.m */,
+				97F0EA5B21D5D33C0058501C /* Constants.h */,
+				97F0EA5821D5D33C0058501C /* UIViewController+Appearance.h */,
+				97F0EA5A21D5D33C0058501C /* UIViewController+Appearance.m */,
+				97F0EA5721D5D33C0058501C /* UIView+FNSetFrame.h */,
+				97F0EA5E21D5D33C0058501C /* UIView+FNSetFrame.m */,
+				97F0EA6121D5D33C0058501C /* UIViewController+NavigationButtons.h */,
+				97F0EA6021D5D33C0058501C /* UIViewController+NavigationButtons.m */,
+				97F0EA5F21D5D33C0058501C /* NSString+Soundex.h */,
+				97F0EA5521D5D33C0058501C /* NSString+Soundex.m */,
+				97F0EA5D21D5D33C0058501C /* UIImage+Resize.h */,
+				97F0EA5921D5D33C0058501C /* UIImage+Resize.m */,
+				97F0EA5621D5D33C0058501C /* UIColor + HexToRGB.h */,
+				97F0EA5C21D5D33C0058501C /* UIColor + HexToRGB.m */,
+				97F0EA5321D5D30D0058501C /* BaseViewController.h */,
+				97F0EA5221D5D30D0058501C /* BaseViewController.m */,
+				97F0EA4C21D5D2E30058501C /* LevelPickerCell.h */,
+				97F0EA4D21D5D2E30058501C /* LevelPickerCell.m */,
+				97F0EA4E21D5D2E30058501C /* LevelPickerCell.xib */,
+				97F0EA4B21D5D2E30058501C /* TYLevelPicker.h */,
+				97F0EA4A21D5D2E30058501C /* TYLevelPicker.m */,
+				97885F5B21D5B828002ADFBC /* CustomCalloutView.h */,
+				97885F5A21D5B828002ADFBC /* CustomCalloutView.m */,
+				97885F5921D5B828002ADFBC /* CustomCalloutView.xib */,
+				978770AF21D56C2600FCEEC9 /* MBProgressHUD.h */,
+				978770AE21D56C2600FCEEC9 /* MBProgressHUD.m */,
+			);
+			path = 3rdParty;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AE572631F4712D600DC7159 /* SpreoReadyUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AE572761F4712D600DC7159 /* Build configuration list for PBXNativeTarget "SpreoReadyUI" */;
+			buildPhases = (
+				1AE572601F4712D600DC7159 /* Sources */,
+				1AE572611F4712D600DC7159 /* Frameworks */,
+				1AE572621F4712D600DC7159 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpreoReadyUI;
+			productName = SampleApp;
+			productReference = 1AE572641F4712D600DC7159 /* SpreoReadyUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1AE5725C1F4712D600DC7159 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Spreo;
+				TargetAttributes = {
+					1AE572631F4712D600DC7159 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 9V5WREKJ4Y;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1AE5725F1F4712D600DC7159 /* Build configuration list for PBXProject "SpreoReadyUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1AE5725B1F4712D600DC7159;
+			productRefGroup = 1AE572651F4712D600DC7159 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AE572631F4712D600DC7159 /* SpreoReadyUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1AE572621F4712D600DC7159 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AE5726F1F4712D600DC7159 /* Assets.xcassets in Resources */,
+				97C9E17621D7F5AE0082781F /* SpreoPoiDetailTableViewCell.xib in Resources */,
+				97B6C15D21D8241F00324C4A /* SpreoFromToViewController.xib in Resources */,
+				97C9E17221D7F5730082781F /* SpreoPoiDetailsTableViewController.xib in Resources */,
+				9728926F21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib in Resources */,
+				97B6C16121D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib in Resources */,
+				9728926621D69DEC000A711E /* SpreoInstructionTableViewCell.xib in Resources */,
+				9780A28021D8674C00093E5A /* SpreoFromToTableViewCell.xib in Resources */,
+				55C7CB842023ABFD003D05D7 /* IndoorKit.bundle in Resources */,
+				97F0EA5121D5D2E30058501C /* LevelPickerCell.xib in Resources */,
+				97D2F9B621D93FB400EB9E61 /* SpreoLocationPopupViewController.xib in Resources */,
+				9728926A21D69DFE000A711E /* SpreoInstructionTableViewController.xib in Resources */,
+				1AE5726D1F4712D600DC7159 /* SpreoReadyUI.storyboard in Resources */,
+				97D6223821D561810016F497 /* Launch Screen.storyboard in Resources */,
+				97885F5C21D5B828002ADFBC /* CustomCalloutView.xib in Resources */,
+				55C7CB812023ABFD003D05D7 /* GoogleMaps.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1AE572601F4712D600DC7159 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97F0EA6721D5D33C0058501C /* UIViewController+NavigationButtons.m in Sources */,
+				97F0EA6421D5D33C0058501C /* UIViewController+Appearance.m in Sources */,
+				978770B221D5795C00FCEEC9 /* SpreoExtentions.swift in Sources */,
+				97B6C15C21D8241F00324C4A /* SpreoFromToViewController.swift in Sources */,
+				9728926521D69DEC000A711E /* SpreoInstructionTableViewCell.swift in Sources */,
+				1AE572681F4712D600DC7159 /* AppDelegate.swift in Sources */,
+				9728926E21D6A2C5000A711E /* SpreoInstructionPopupViewController.swift in Sources */,
+				97F0EA6221D5D33C0058501C /* NSString+Soundex.m in Sources */,
+				97C9E17121D7F5730082781F /* SpreoPoiDetailsTableViewController.swift in Sources */,
+				97F0EA5021D5D2E30058501C /* LevelPickerCell.m in Sources */,
+				97DB480E21D5A8D000716555 /* SpreoSearchData.swift in Sources */,
+				97F0EA4F21D5D2E30058501C /* TYLevelPicker.m in Sources */,
+				97DB480C21D59AD400716555 /* MenuTableViewCell.swift in Sources */,
+				9728927121D6B07A000A711E /* SwiftyJSON.swift in Sources */,
+				9780A27F21D8674C00093E5A /* SpreoFromToTableViewCell.swift in Sources */,
+				97B6C16021D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift in Sources */,
+				97F0EA6521D5D33C0058501C /* UIColor + HexToRGB.m in Sources */,
+				97F0EA6621D5D33C0058501C /* UIView+FNSetFrame.m in Sources */,
+				97DB480A21D59AC400716555 /* HistoryTableViewCell.swift in Sources */,
+				97F0EA6D21D5D3C60058501C /* FloorModel.m in Sources */,
+				978770AB21D56C0300FCEEC9 /* SpreoBanner.swift in Sources */,
+				9728926921D69DFE000A711E /* SpreoInstructionTableViewController.swift in Sources */,
+				97F0EA6A21D5D3980058501C /* BaseTableCell.m in Sources */,
+				97C9E17521D7F5AE0082781F /* SpreoPoiDetailTableViewCell.swift in Sources */,
+				97885F5D21D5B828002ADFBC /* CustomCalloutView.m in Sources */,
+				97F0EA5421D5D30D0058501C /* BaseViewController.m in Sources */,
+				978770B021D56C2600FCEEC9 /* MBProgressHUD.m in Sources */,
+				97D2F9B521D93FB400EB9E61 /* SpreoLocationPopupViewController.swift in Sources */,
+				1AE5727F1F4713D500DC7159 /* SpreoLoginViewController.swift in Sources */,
+				1AE5727D1F4713D500DC7159 /* SpreoMapViewController.swift in Sources */,
+				97F0EA6321D5D33C0058501C /* UIImage+Resize.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1AE5726B1F4712D600DC7159 /* SpreoReadyUI.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AE5726C1F4712D600DC7159 /* Base */,
+			);
+			name = SpreoReadyUI.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1AE572741F4712D600DC7159 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1AE572751F4712D600DC7159 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1AE572771F4712D600DC7159 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9V5WREKJ4Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../sdk_binary_distribution/",
+					"$(PROJECT_DIR)/SampleApp",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/spreoReadyUI/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"Accounts\"",
+					"-framework",
+					"\"Social\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"CoreMotion\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.spreo.readyUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "spreoReadyUI/SpreoReadyUI-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1AE572781F4712D600DC7159 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9V5WREKJ4Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../sdk_binary_distribution/",
+					"$(PROJECT_DIR)/SampleApp",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/spreoReadyUI/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MapKit\"",
+					"-framework",
+					"\"Accounts\"",
+					"-framework",
+					"\"Social\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"CoreMotion\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.spreo.readyUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "spreoReadyUI/SpreoReadyUI-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1AE5725F1F4712D600DC7159 /* Build configuration list for PBXProject "SpreoReadyUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AE572741F4712D600DC7159 /* Debug */,
+				1AE572751F4712D600DC7159 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AE572761F4712D600DC7159 /* Build configuration list for PBXNativeTarget "SpreoReadyUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AE572771F4712D600DC7159 /* Debug */,
+				1AE572781F4712D600DC7159 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1AE5725C1F4712D600DC7159 /* Project object */;
+}

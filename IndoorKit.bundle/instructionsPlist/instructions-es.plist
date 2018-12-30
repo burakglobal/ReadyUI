@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>instructionsInfo</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>straight</string>
+			<key>text</key>
+			<string>Siga derecho</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_left</string>
+			<key>text</key>
+			<string>Doble a la izquierda</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>left_hall</string>
+			<key>text</key>
+			<string>Manténgase a la izquierda</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_right</string>
+			<key>text</key>
+			<string>Doble a la derecha</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>right_hall</string>
+			<key>text</key>
+			<string>Manténgase a la derecha</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_up</string>
+			<key>text</key>
+			<string>Vaya al piso</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_down</string>
+			<key>text</key>
+			<string>Vaya al piso</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>destination3</string>
+			<key>text</key>
+			<string>Llegó</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>turn_back</string>
+			<key>text</key>
+			<string>Dé la vuelta</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>recalculate</string>
+			<key>text</key>
+			<string>Recalcular</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_path</string>
+			<key>text</key>
+			<string>Salga al exterior</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_path</string>
+			<key>text</key>
+			<string>Proceda al interior</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>continue_to_destination</string>
+			<key>text</key>
+			<string>Siga la ruta pautada</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_up</string>
+			<key>text</key>
+			<string>Vaya al piso</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>elevator_down</string>
+			<key>text</key>
+			<string>Vaya al piso</string>
+		</dict>
+	</array>
+	<key>continue_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>Cerca</string>
+	</dict>
+	<key>last_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>Justo adelante</string>
+	</dict>
+	<key>last_simplified_instruction</key>
+	<dict>
+		<key>text</key>
+		<string>Siga la ruta pautada hacia</string>
+	</dict>
+</dict>
+</plist>

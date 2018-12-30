@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="SpreoFromToTableViewCell" customModule="SpreoReadyUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building_Floor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASd-ba-OoR">
+                        <rect key="frame" x="48" y="24" width="264" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="gss-rn-nG2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_history" translatesAutoresizingMaskIntoConstraints="NO" id="Pyo-3O-OFR">
+                        <rect key="frame" x="16" y="10" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="HRu-KD-xs8"/>
+                            <constraint firstAttribute="width" secondItem="Pyo-3O-OFR" secondAttribute="height" multiplier="1:1" id="ZKN-Vl-Nsh"/>
+                            <constraint firstAttribute="width" constant="24" id="cDD-MK-MPC"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrJ-pF-aSi" userLabel="seperator">
+                        <rect key="frame" x="0.0" y="47.5" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Wye-wC-G3K"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POI_Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mL-7D-k6Z">
+                        <rect key="frame" x="48" y="5" width="264" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="xdC-5f-cK4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Pyo-3O-OFR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4el-nL-ABZ"/>
+                    <constraint firstItem="8mL-7D-k6Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8Vd-mH-hKK"/>
+                    <constraint firstAttribute="trailing" secondItem="ASd-ba-OoR" secondAttribute="trailing" constant="8" id="Cn0-Wh-CQZ"/>
+                    <constraint firstItem="ASd-ba-OoR" firstAttribute="leading" secondItem="Pyo-3O-OFR" secondAttribute="trailing" constant="8" id="LT1-9A-o30"/>
+                    <constraint firstAttribute="bottom" secondItem="NrJ-pF-aSi" secondAttribute="bottom" constant="1" id="Lns-vL-MQz"/>
+                    <constraint firstItem="Pyo-3O-OFR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ow7-ZZ-j8Z"/>
+                    <constraint firstItem="8mL-7D-k6Z" firstAttribute="leading" secondItem="Pyo-3O-OFR" secondAttribute="trailing" constant="8" id="Tgi-Sy-V32"/>
+                    <constraint firstAttribute="trailing" secondItem="8mL-7D-k6Z" secondAttribute="trailing" constant="8" id="Zjk-bJ-ndM"/>
+                    <constraint firstAttribute="trailing" secondItem="NrJ-pF-aSi" secondAttribute="trailing" id="kst-jo-eQp"/>
+                    <constraint firstItem="ASd-ba-OoR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="tEA-zF-EJc"/>
+                    <constraint firstItem="NrJ-pF-aSi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yGz-zs-P6J"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="poiDetails" destination="ASd-ba-OoR" id="TQ0-Dh-RPn"/>
+                <outlet property="poiIcon" destination="Pyo-3O-OFR" id="W1m-be-1r4"/>
+                <outlet property="poiTitle" destination="8mL-7D-k6Z" id="Qzt-Jh-4Kl"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="51.27436281859071"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="search_history" width="16.25" height="16.25"/>
+    </resources>
+</document>

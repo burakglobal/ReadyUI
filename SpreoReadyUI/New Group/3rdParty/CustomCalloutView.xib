@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Trade Gothic Bold Condensed #20.ttf">
+            <string>TradeGothicLT-BoldCondTwenty</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomCalloutView">
+            <rect key="frame" x="0.0" y="0.0" width="147" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buble_bottom_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="PlH-c7-RtA">
+                    <rect key="frame" x="67" y="33" width="13" height="7"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="13" id="aVV-rE-IlI"/>
+                        <constraint firstAttribute="height" constant="7" id="y1P-Xd-Msh"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6D-Pt-ePk">
+                    <rect key="frame" x="0.0" y="0.0" width="147" height="33"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7W9-VT-Jza">
+                            <rect key="frame" x="5" y="0.0" width="117" height="33"/>
+                            <fontDescription key="fontDescription" name="TradeGothicLT-BoldCondTwenty" family="TradeGothic LT CondEighteen" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Navigate_black" translatesAutoresizingMaskIntoConstraints="NO" id="tGw-kh-j5h">
+                            <rect key="frame" x="122" y="6.5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="VRm-pI-Pi3"/>
+                                <constraint firstAttribute="width" constant="20" id="s9v-zW-VHy"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="7W9-VT-Jza" secondAttribute="bottom" id="JCQ-BO-cAK"/>
+                        <constraint firstItem="tGw-kh-j5h" firstAttribute="centerY" secondItem="7W9-VT-Jza" secondAttribute="centerY" id="N9s-7q-PGX"/>
+                        <constraint firstItem="tGw-kh-j5h" firstAttribute="leading" secondItem="7W9-VT-Jza" secondAttribute="trailing" id="NRW-Cd-mNd"/>
+                        <constraint firstItem="7W9-VT-Jza" firstAttribute="top" secondItem="v6D-Pt-ePk" secondAttribute="top" id="Swf-nt-vX0"/>
+                        <constraint firstAttribute="trailing" secondItem="7W9-VT-Jza" secondAttribute="trailing" priority="750" constant="5" id="hXu-tT-xTJ"/>
+                        <constraint firstItem="7W9-VT-Jza" firstAttribute="leading" secondItem="v6D-Pt-ePk" secondAttribute="leading" constant="5" id="uhr-Tk-m1m"/>
+                        <constraint firstAttribute="trailing" secondItem="tGw-kh-j5h" secondAttribute="trailing" constant="5" id="x4e-hB-okJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="v6D-Pt-ePk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0wc-EQ-5ig"/>
+                <constraint firstAttribute="bottom" secondItem="PlH-c7-RtA" secondAttribute="bottom" id="1v2-Qb-fJZ"/>
+                <constraint firstItem="PlH-c7-RtA" firstAttribute="top" secondItem="v6D-Pt-ePk" secondAttribute="bottom" id="3j3-Uf-zhD"/>
+                <constraint firstItem="PlH-c7-RtA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FVY-pB-iGN"/>
+                <constraint firstItem="v6D-Pt-ePk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RaV-jK-eGx"/>
+                <constraint firstAttribute="trailing" secondItem="v6D-Pt-ePk" secondAttribute="trailing" id="kfP-o1-6Db"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="calloutTitleLable" destination="7W9-VT-Jza" id="qij-A4-sVx"/>
+                <outlet property="containerTitleView" destination="v6D-Pt-ePk" id="KBi-rx-W4j"/>
+                <outlet property="navIcon" destination="tGw-kh-j5h" id="BLM-mv-G9C"/>
+            </connections>
+            <point key="canvasLocation" x="-29.600000000000001" y="25.187406296851577"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Navigate_black" width="256" height="256"/>
+        <image name="buble_bottom_arrow" width="26" height="13"/>
+    </resources>
+</document>
