@@ -789,6 +789,7 @@ extension spreoMapViewController : IDNavigationDelegate {
      * - parameter aStatus: IDNavigationStatus enum type
      */
     func update(withInstruction anInstruction: [AnyHashable : Any]!, andStatus aStatus: IDNavigationStatus) {
+        self.searchMenu.isHidden = true
         self.instructionVC?.update(withInstruction: anInstruction, andStatus: aStatus)
     }
     
@@ -1144,7 +1145,6 @@ extension spreoMapViewController:spreoLocationProtocol {
 
 extension spreoMapViewController:spreoParkingProtocol {
     func takeMeToMyCarTapped() {
-        self.searchMenu.isHidden = true
         closeSearch()
         self.parkingPopup!.view.removeFromSuperview()
         self.parkingPopup = nil
