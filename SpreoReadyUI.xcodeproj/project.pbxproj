@@ -32,6 +32,8 @@
 		978770B221D5795C00FCEEC9 /* SpreoExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978770B121D5795C00FCEEC9 /* SpreoExtentions.swift */; };
 		97885F5C21D5B828002ADFBC /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97885F5921D5B828002ADFBC /* CustomCalloutView.xib */; };
 		97885F5D21D5B828002ADFBC /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97885F5A21D5B828002ADFBC /* CustomCalloutView.m */; };
+		978F6E8421DA7A49008C3682 /* SpreoLocationServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978F6E8221DA7A49008C3682 /* SpreoLocationServicesViewController.swift */; };
+		978F6E8521DA7A49008C3682 /* SpreoLocationServicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978F6E8321DA7A49008C3682 /* SpreoLocationServicesViewController.xib */; };
 		97AB94DB21D995F700764275 /* SpreoParkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB94D921D995F700764275 /* SpreoParkingViewController.swift */; };
 		97AB94DC21D995F700764275 /* SpreoParkingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97AB94DA21D995F700764275 /* SpreoParkingViewController.xib */; };
 		97B6C15C21D8241F00324C4A /* SpreoFromToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */; };
@@ -93,6 +95,8 @@
 		97885F5921D5B828002ADFBC /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		97885F5A21D5B828002ADFBC /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
 		97885F5B21D5B828002ADFBC /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
+		978F6E8221DA7A49008C3682 /* SpreoLocationServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoLocationServicesViewController.swift; sourceTree = "<group>"; };
+		978F6E8321DA7A49008C3682 /* SpreoLocationServicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoLocationServicesViewController.xib; sourceTree = "<group>"; };
 		97AB94D921D995F700764275 /* SpreoParkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoParkingViewController.swift; sourceTree = "<group>"; };
 		97AB94DA21D995F700764275 /* SpreoParkingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpreoParkingViewController.xib; sourceTree = "<group>"; };
 		97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreoFromToViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				97D2F9B421D93FB400EB9E61 /* SpreoLocationPopupViewController.xib */,
 				97AB94D921D995F700764275 /* SpreoParkingViewController.swift */,
 				97AB94DA21D995F700764275 /* SpreoParkingViewController.xib */,
+				978F6E8221DA7A49008C3682 /* SpreoLocationServicesViewController.swift */,
+				978F6E8321DA7A49008C3682 /* SpreoLocationServicesViewController.xib */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				97B6C15D21D8241F00324C4A /* SpreoFromToViewController.xib in Resources */,
 				97C9E17221D7F5730082781F /* SpreoPoiDetailsTableViewController.xib in Resources */,
 				9728926F21D6A2C5000A711E /* SpreoInstructionPopupViewController.xib in Resources */,
+				978F6E8521DA7A49008C3682 /* SpreoLocationServicesViewController.xib in Resources */,
 				97B6C16121D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib in Resources */,
 				9728926621D69DEC000A711E /* SpreoInstructionTableViewCell.xib in Resources */,
 				9780A28021D8674C00093E5A /* SpreoFromToTableViewCell.xib in Resources */,
@@ -386,6 +393,7 @@
 				9728927121D6B07A000A711E /* SwiftyJSON.swift in Sources */,
 				9780A27F21D8674C00093E5A /* SpreoFromToTableViewCell.swift in Sources */,
 				97B6C16021D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift in Sources */,
+				978F6E8421DA7A49008C3682 /* SpreoLocationServicesViewController.swift in Sources */,
 				97F0EA6521D5D33C0058501C /* UIColor + HexToRGB.m in Sources */,
 				97F0EA6621D5D33C0058501C /* UIView+FNSetFrame.m in Sources */,
 				97DB480A21D59AC400716555 /* HistoryTableViewCell.swift in Sources */,

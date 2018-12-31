@@ -26,9 +26,9 @@ class spreoLoginViewController: UIViewController {
         let APIKEY = "e943254ee3574a61b9385e01e1d8f8631544219536492226765885" //fe7819aaa33a45dbbb1f499f59cbb16815246399008001906839929" //"e173ce9ec1714c1cb8fa1fd6def7044615160910552661916497521"
         IDKit.setAPIKey(APIKEY, error: &error)
         IDKit.setZipPackageWithoutMaps(true)
-        IDKit.setNoOutdoorCampus(true)
         IDKit.setCustomUserLocationIcon(UIImage.init(named: "blue_dot"))
         IDKit.setShowNavigationMarkers(true)
+        IDKit.setExitCloseToOrigin(true)
         IDKit.setNoOutdoorCampus(true)
         if((error) != nil){
             print("IDKit error! \((error?.code)!).\((error?.domain)!)")
@@ -65,7 +65,8 @@ class spreoLoginViewController: UIViewController {
         self.activityIndicator.hidesWhenStopped = true
         let vc = UIStoryboard.init(name: "SpreoReadyUI", bundle: Bundle.main).instantiateViewController(withIdentifier: "SpreoMapViewController") as? spreoMapViewController
         self.navigationController?.pushViewController(vc!, animated: true)
-        
+        IDKit.startUserLocationTrack()
+
     }
     
 }
