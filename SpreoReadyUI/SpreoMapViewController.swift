@@ -36,6 +36,8 @@ class spreoMapViewController: UIViewController   {
     let blankUI = UIView()
     var fromToPopup:SpreoFromToViewController?
     var locationPopup:SpreoLocationPopupViewController?
+    var parkingPopup:SpreoParkingViewController?
+    
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
@@ -150,7 +152,7 @@ class spreoMapViewController: UIViewController   {
         checkLocation(with: false, poi:nil)
         self.setLevelPicker()
         self.mapVC?.putUserInCampus = false;
-        self.mapVC?.setMapZoomSWFT(16)
+        self.mapVC?.setMapZoomSWFT(17)
         self.mapVC?.setMinZoom(16, maxZoom: 22)
         self.mapVC?.addTiles()
     }
@@ -220,8 +222,10 @@ class spreoMapViewController: UIViewController   {
               
              }
 
-            if (!IDKit.isUser(inCampus: 0)) {
+            if (!IDKit.isUser(inCampus: 1000)) {
                 self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
+            } else {
+                IDKit.setDisplayUserLocationIcon(true)
             }
             
             self.myLocationButton.isEnabled = true
@@ -235,7 +239,7 @@ class spreoMapViewController: UIViewController   {
     func initInstructionController(){
         // get instruction controller
         self.instructionVC = IDKit.getInstructionsController()
-        
+        //self.instructionVC?.view.frame = CGRect(x: 0, y: self.topLayoutGuide.length, width: self.view.frame.width, height: 40)
         // set the instruction controller delegate
         self.instructionVC?.delegate = self
         self.instructionVC?.view.alpha = 1
@@ -274,6 +278,25 @@ class spreoMapViewController: UIViewController   {
             banner.dismissesOnTap = true
             banner.show(duration: 1.0)
             self.closeSearch()
+        }
+        
+    }
+    
+    func showParking() {
+        self.closeSearch()
+        if (parkingPopup==nil) {
+            parkingPopup = SpreoParkingViewController(nibName: "SpreoParkingViewController", bundle: nil)
+            parkingPopup?.view.clipsToBounds = true
+            parkingPopup?.delegate = self
+            parkingPopup?.view.dropShadow()
+            parkingPopup!.view.frame = CGRect(x: 0.0, y: self.view.frame.height-250, width: self.view.frame.width, height:
+            parkingPopup!.view.frame.height)
+            parkingPopup!.view.alpha = 1
+            parkingPopup!.view.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+            self.view.addSubview((parkingPopup?.view)!)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
+                self.parkingPopup!.view.transform = .identity
+            })
         }
         
     }
@@ -407,7 +430,7 @@ class spreoMapViewController: UIViewController   {
             if ((from?.isIndoor)!) {
                 let fromUL:IDUserLocation = IDUserLocation(campusId: from?.campusId, facilityId: from?.facilityId, outCoordinate: (from?.outCoordinate)!, inCoordinate: (from?.inCoordinate)!, andFloorId: (from?.floorId)!)
                 IDKit.setUserLocation(fromUL)
-                self.mapVC?.showFloor(withID: fromUL.floorId, atFacilityWithId: fromUL.facilityId)
+                self.mapVC?.updateUserLocationWithSmoothlyAnimation()
                 levelPickerView.updateViewForNavigation(toFloor: location!.floorId, fromFloor: (fromUL.floorId))
             } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
         } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
@@ -417,12 +440,14 @@ class spreoMapViewController: UIViewController   {
                             with: .navigationOptionStaff,
                             andDelegate: self)
         
+
+        
         if (!res) {
             let banner = Banner(title: "Navigation", subtitle: "Navigation Error! ", image: UIImage(named: "Non"), backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.0)
             IDKit.stopNavigation()
-        }
+        } else {  if (IDKit.getUserLocation().isIndoor) { self.mapVC?.showFloor(withID: (IDKit.getUserLocation().floorId), atFacilityWithId: IDKit.getUserLocation().facilityId) } }
     }
     
     
@@ -571,7 +596,6 @@ class spreoMapViewController: UIViewController   {
     
     @IBAction func searchTextFieldChanged(_ sender: Any) {
         self.searchResults.removeAll()
-        self.tableViewMoveToTop()
         guard let stext = searchText.text else {
             return
         }
@@ -603,6 +627,7 @@ class spreoMapViewController: UIViewController   {
         if (searchResults.count==0) {
             hamburgermMenu.isHidden = true
         }
+        self.tableViewMoveToTop()
     }
     
     func closeSearch() {
@@ -824,7 +849,9 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
     
     func tableViewMoveToTop() {
         let topIndexPath:IndexPath = IndexPath(row: 0, section: 0)
-        self.hamburgerMenuTableView.scrollToRow(at: topIndexPath, at: .top, animated: false)
+        if self.searchResults.count > 0 {
+            self.hamburgerMenuTableView.scrollToRow(at: topIndexPath, at: .top, animated: false)
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -1004,7 +1031,7 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
             } else if indexPath.row - (self.searches.count)==1 { // Favorites
                 self.populateFavorites()
             } else if indexPath.row - (self.searches.count)==2 { // Parking
-                
+                self.showParking()
             }
             return
 
@@ -1084,6 +1111,7 @@ extension spreoMapViewController:SpreoFromToProtocol {
     
     func startNavigation(from: IDPoi?, toPoi: IDPoi?) {
         closeNavBar()
+        self.searchMenu.isHidden = true
          if (toPoi != nil) {
              storeSearch(searchKey: (toPoi?.identifier)!)
 
@@ -1109,6 +1137,30 @@ extension spreoMapViewController:spreoLocationProtocol {
     func continueTapped(poi:IDPoi) {
         self.locationPopup!.view.removeFromSuperview()
         self.startNavigationToLocation(aLocation: poi.location, from:nil)
+    }
+    
+    
+}
+
+extension spreoMapViewController:spreoParkingProtocol {
+    func takeMeToMyCarTapped() {
+        self.searchMenu.isHidden = true
+        closeSearch()
+        self.parkingPopup!.view.removeFromSuperview()
+        self.parkingPopup = nil
+        _ = IDKit.startNavigate(to: IDKit.getUserLocation(),
+                                      with: .navigationOptionStaff,
+                                      andDelegate: self)
+    }
+    
+    func markMySpotTapped() {
+        
+    }
+    
+    func closeCancelTapped() {
+        self.searchMenu.isHidden = false
+        self.parkingPopup!.view.removeFromSuperview()
+        self.parkingPopup = nil
     }
     
     

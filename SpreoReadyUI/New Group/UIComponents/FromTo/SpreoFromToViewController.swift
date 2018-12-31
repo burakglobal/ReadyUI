@@ -47,6 +47,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func closeTapped(_ sender: Any) {
+        IDKit.stopNavigation()
         delegate?.close()
     }
     
@@ -182,7 +183,23 @@ extension SpreoFromToViewController:spreoFromToTableViewProtocol {
         }
         self.delegate?.showOnTheMap(poi: poi)
         closeOriginPopup()
+        
+        if (fromPoi != nil && toPoi != nil) {
+            self.delegate?.showOnTheMap(poi: fromPoi)
+            let fromUL:IDUserLocation = IDUserLocation(campusId: fromPoi!.location.campusId, facilityId: fromPoi!.location.facilityId, outCoordinate: (fromPoi?.location.outCoordinate)!, inCoordinate: (fromPoi?.location.inCoordinate)!, andFloorId: (fromPoi?.location.floorId)!)
+            IDKit.setUserLocation(fromUL)
+            IDKit.startNavigate(to: (toPoi?.location)!, with: IDNavigationOptions.navigationOptionRegular, andDelegate: self)
+        }
+        
     }
     
     
 }
+
+
+// MARK: - IDNavigationDelegate methods
+extension SpreoFromToViewController : IDNavigationDelegate {
+
+
+}
+
