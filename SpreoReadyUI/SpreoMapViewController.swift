@@ -462,6 +462,7 @@ class spreoMapViewController: UIViewController   {
                 IDKit.setUserLocation(fromUL)
                 self.mapVC?.updateUserLocationWithSmoothlyAnimation()
                 levelPickerView.updateViewForNavigation(toFloor: location!.floorId, fromFloor: (fromUL.floorId))
+                IDKit.setDisplayUserLocationIcon(false)
             } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
         } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
 
@@ -469,8 +470,6 @@ class spreoMapViewController: UIViewController   {
         let res = IDKit.startNavigate(to: location!,
                             with: .navigationOptionStaff,
                             andDelegate: self)
-        
-
         
         if (!res) {
             let banner = Banner(title: "Navigation", subtitle: "Navigation Error! ", image: UIImage(named: "Non"), backgroundColor: UIColor.red)
@@ -1170,6 +1169,9 @@ extension spreoMapViewController:spreoLocationProtocol {
         self.startNavigationToLocation(aLocation: poi.location, from:nil)
     }
     
+    func cancelTappedLocationCheckPopup() {
+        self.locationPopup!.view.removeFromSuperview()
+    }
     
 }
 
@@ -1197,6 +1199,7 @@ extension spreoMapViewController:spreoParkingProtocol {
 }
 
 extension spreoMapViewController:spreoLocationServicesProtocol {
+    
     func cancelTapped() {
         closeLocationServices()
     }

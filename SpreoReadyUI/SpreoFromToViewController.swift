@@ -32,6 +32,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     var toSearchPopup:SpreoFromToSearchResultsTableViewController?
     var currentTop:CGFloat?
     var searchType = 0
+    var focused = 0
     
      override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,15 +71,18 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func fromTapped(_ sender: Any) {
         searchType = 1
+        focused = 1
         openFromSearch()
     }
     
     @IBAction func toTapped(_ sender: Any) {
         searchType = 1
+        focused = 2
         openToSearch()
     }
     
     @IBAction func fromTextChanged(_ sender: Any) {
+        focused = 0
         searchType = 0
         openFromSearch()
     }
@@ -94,11 +98,8 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
         if fromSearchPopup != nil {
             fromSearchPopup!.view.removeFromSuperview()
         }
-        
-        
-        
-        if ((fromSearchPopup) != nil) {
-            self.fromSearchPopup!.view.removeFromSuperview()
+        if ((toSearchPopup) != nil) {
+            self.toSearchPopup!.view.removeFromSuperview()
         }
         
         self.startNavigation.isHidden = true
@@ -126,6 +127,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func toTextChanged(_ sender: Any) {
         searchType = 0
+        focused = 0
         openToSearch()
     }
     func openToSearch() {
@@ -174,17 +176,30 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
 
 extension SpreoFromToViewController:spreoFromToTableViewProtocol {
     func returnSelected(poi: IDPoi?) {
-        if (fromSearchPopup != nil) {
-            fromPoi = poi
-            self.originViewTextbox.text = poi?.title
+        if (searchType==0) {
+            if (fromSearchPopup != nil) {
+                fromPoi = poi
+                self.originViewTextbox.text = poi?.title
+            } else {
+                toPoi = poi
+                self.destinationViewTextbox.text = poi?.title
+            }
         } else {
-            toPoi = poi
-            self.destinationViewTextbox.text = poi?.title
+            if (focused==1) {
+                fromPoi = poi
+                self.originViewTextbox.text = poi?.title
+            } else {
+                toPoi = poi
+                self.destinationViewTextbox.text = poi?.title
+            }
         }
+        
+       
         self.delegate?.showOnTheMap(poi: poi)
         closeOriginPopup()
         
         if (fromPoi != nil && toPoi != nil) {
+            IDKit.setDisplayUserLocationIcon(false)
             self.delegate?.showOnTheMap(poi: fromPoi)
             let fromUL:IDUserLocation = IDUserLocation(campusId: fromPoi!.location.campusId, facilityId: fromPoi!.location.facilityId, outCoordinate: (fromPoi?.location.outCoordinate)!, inCoordinate: (fromPoi?.location.inCoordinate)!, andFloorId: (fromPoi?.location.floorId)!)
             IDKit.setUserLocation(fromUL)

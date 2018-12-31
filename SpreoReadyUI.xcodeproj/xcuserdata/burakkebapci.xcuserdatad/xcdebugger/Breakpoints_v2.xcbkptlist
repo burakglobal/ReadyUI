@@ -9,108 +9,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.622716"
+            filePath = "SpreoReadyUI/SpreoFromToViewController.swift"
+            timestampString = "567973960.076749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "startNavigationToLocation(aLocation:from:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SpreoReadyUI.spreoMapViewController.startNavigationToLocation(aLocation: Swift.Optional&lt;__C.IDLocation&gt;, from: Swift.Optional&lt;__C.IDLocation&gt;) -&gt; ()"
-                  moduleName = "SpreoReadyUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/burakkebapci/Documents/GitHub/SpreoReadyUI/SpreoReadyUI/SpreoMapViewController.swift"
-                  timestampString = "567911303.152649"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "430"
-                  endingLineNumber = "430"
-                  offsetFromSymbolStart = "848">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SpreoReadyUI.spreoMapViewController.startNavigationToLocation(aLocation: Swift.Optional&lt;__C.IDLocation&gt;, from: Swift.Optional&lt;__C.IDLocation&gt;) -&gt; ()"
-                  moduleName = "SpreoReadyUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/burakkebapci/Documents/GitHub/SpreoReadyUI/SpreoReadyUI/SpreoMapViewController.swift"
-                  timestampString = "567911303.15696"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "430"
-                  endingLineNumber = "430"
-                  offsetFromSymbolStart = "5220">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.623276"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
-            landmarkName = "startNavigationToLocation(aLocation:from:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SpreoReadyUI.spreoMapViewController.startNavigationToLocation(aLocation: Swift.Optional&lt;__C.IDLocation&gt;, from: Swift.Optional&lt;__C.IDLocation&gt;) -&gt; ()"
-                  moduleName = "SpreoReadyUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/burakkebapci/Documents/GitHub/SpreoReadyUI/SpreoReadyUI/SpreoMapViewController.swift"
-                  timestampString = "567911303.287364"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "431"
-                  endingLineNumber = "431"
-                  offsetFromSymbolStart = "940">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SpreoReadyUI.spreoMapViewController.startNavigationToLocation(aLocation: Swift.Optional&lt;__C.IDLocation&gt;, from: Swift.Optional&lt;__C.IDLocation&gt;) -&gt; ()"
-                  moduleName = "SpreoReadyUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/burakkebapci/Documents/GitHub/SpreoReadyUI/SpreoReadyUI/SpreoMapViewController.swift"
-                  timestampString = "567911303.291518"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "431"
-                  endingLineNumber = "431"
-                  offsetFromSymbolStart = "5228">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/New Group/UIComponents/FromTo/SpreoFromToViewController.swift"
-            timestampString = "567911918.539996"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "returnSelected(poi:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -121,45 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.623769"
+            filePath = "SpreoReadyUI/SpreoFromToViewController.swift"
+            timestampString = "567973960.07752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
-            landmarkName = "startNavigationToLocation(aLocation:from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.6241651"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1211"
-            endingLineNumber = "1211"
-            landmarkName = "openSettingsTapped()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.624531"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1201"
-            endingLineNumber = "1201"
-            landmarkName = "cancelTapped()"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "fromTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,29 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.6248651"
+            filePath = "SpreoReadyUI/SpreoFromToViewController.swift"
+            timestampString = "567973960.0777889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "resultLocation(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.6251889"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "viewDidAppear(_:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "toTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,29 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969281.6255"
+            filePath = "SpreoReadyUI/SpreoFromToViewController.swift"
+            timestampString = "567973960.078046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "viewDidAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "567969326.700224"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "resultLocation(_:_:)"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "returnSelected(poi:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

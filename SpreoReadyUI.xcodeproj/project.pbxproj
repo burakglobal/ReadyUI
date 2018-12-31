@@ -188,22 +188,12 @@
 			isa = PBXGroup;
 			children = (
 				978770AD21D56C1400FCEEC9 /* StaticLibs */,
-				97D6223721D561810016F497 /* Launch Screen.storyboard */,
-				1AE5727A1F4713D500DC7159 /* SpreoMapViewController.swift */,
-				1AE5727C1F4713D500DC7159 /* SpreoLoginViewController.swift */,
-				1AE572791F47132E00DC7159 /* SpreoReadyUI-Bridging-Header.h */,
-				1AE572671F4712D600DC7159 /* AppDelegate.swift */,
-				1AE5726B1F4712D600DC7159 /* SpreoReadyUI.storyboard */,
-				1AE5726E1F4712D600DC7159 /* Assets.xcassets */,
-				1AE572731F4712D600DC7159 /* Info.plist */,
-			);
-			path = SpreoReadyUI;
-			sourceTree = "<group>";
-		};
-		978770AC21D56C0F00FCEEC9 /* UIComponents */ = {
-			isa = PBXGroup;
-			children = (
-				97B6C15921D823FF00324C4A /* FromTo */,
+				97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */,
+				97B6C15B21D8241F00324C4A /* SpreoFromToViewController.xib */,
+				97B6C15E21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift */,
+				97B6C15F21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib */,
+				9780A27D21D8674C00093E5A /* SpreoFromToTableViewCell.swift */,
+				9780A27E21D8674C00093E5A /* SpreoFromToTableViewCell.xib */,
 				97DB480921D59AC400716555 /* HistoryTableViewCell.swift */,
 				97DB480B21D59AD400716555 /* MenuTableViewCell.swift */,
 				97DB480D21D5A8D000716555 /* SpreoSearchData.swift */,
@@ -226,31 +216,25 @@
 				97AB94DA21D995F700764275 /* SpreoParkingViewController.xib */,
 				978F6E8221DA7A49008C3682 /* SpreoLocationServicesViewController.swift */,
 				978F6E8321DA7A49008C3682 /* SpreoLocationServicesViewController.xib */,
+				97D6223721D561810016F497 /* Launch Screen.storyboard */,
+				1AE5727A1F4713D500DC7159 /* SpreoMapViewController.swift */,
+				1AE5727C1F4713D500DC7159 /* SpreoLoginViewController.swift */,
+				1AE572791F47132E00DC7159 /* SpreoReadyUI-Bridging-Header.h */,
+				1AE572671F4712D600DC7159 /* AppDelegate.swift */,
+				1AE5726B1F4712D600DC7159 /* SpreoReadyUI.storyboard */,
+				1AE5726E1F4712D600DC7159 /* Assets.xcassets */,
+				1AE572731F4712D600DC7159 /* Info.plist */,
 			);
-			path = UIComponents;
+			path = SpreoReadyUI;
 			sourceTree = "<group>";
 		};
 		978770AD21D56C1400FCEEC9 /* StaticLibs */ = {
 			isa = PBXGroup;
 			children = (
 				97C9E17721D7FD420082781F /* 3rdParty */,
-				978770AC21D56C0F00FCEEC9 /* UIComponents */,
 			);
 			name = StaticLibs;
 			path = "New Group";
-			sourceTree = "<group>";
-		};
-		97B6C15921D823FF00324C4A /* FromTo */ = {
-			isa = PBXGroup;
-			children = (
-				97B6C15A21D8241F00324C4A /* SpreoFromToViewController.swift */,
-				97B6C15B21D8241F00324C4A /* SpreoFromToViewController.xib */,
-				97B6C15E21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.swift */,
-				97B6C15F21D8282800324C4A /* SpreoFromToSearchResultsTableViewController.xib */,
-				9780A27D21D8674C00093E5A /* SpreoFromToTableViewCell.swift */,
-				9780A27E21D8674C00093E5A /* SpreoFromToTableViewCell.xib */,
-			);
-			path = FromTo;
 			sourceTree = "<group>";
 		};
 		97C9E17721D7FD420082781F /* 3rdParty */ = {

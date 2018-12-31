@@ -11,18 +11,18 @@ import UIKit
 protocol spreoLocationProtocol {
     func goBackTapped()
     func continueTapped(poi:IDPoi)
+    func cancelTappedLocationCheckPopup()
 }
 class SpreoLocationPopupViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var goBackButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     var delegate:spreoLocationProtocol?
     var poi:IDPoi?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
 
     @IBAction func continueTapped(_ sender: Any) {
@@ -33,5 +33,9 @@ class SpreoLocationPopupViewController: UIViewController {
         self.delegate?.goBackTapped()
     }
     
-
+    @IBAction func cancelTapped(_ sender: Any) {
+        self.delegate?.cancelTappedLocationCheckPopup()
+        
+    }
+    
 }
