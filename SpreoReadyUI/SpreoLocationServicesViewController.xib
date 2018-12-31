@@ -9,19 +9,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpreoLocationServicesViewController" customModule="Ellucian_GO" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpreoLocationServicesViewController" customModule="SpreoReadyUI" customModuleProvider="target">
             <connections>
+                <outlet property="continueButton" destination="wfd-EO-T4w" id="BUz-kV-SMl"/>
                 <outlet property="locationServicesLabel" destination="Dh7-CW-K1l" id="hl5-gU-Hnq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="159"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXc-py-i20">
-                    <rect key="frame" x="30" y="69" width="315" height="30"/>
+                    <rect key="frame" x="30" y="60" width="315" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="QEu-ZZ-lpq"/>
                     </constraints>
@@ -33,10 +34,29 @@
                         <action selector="openSettingsTapped:" destination="-1" eventType="touchUpInside" id="DaV-OT-Rpg"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-KI-aao">
-                    <rect key="frame" x="30" y="107" width="315" height="30"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfd-EO-T4w">
+                    <rect key="frame" x="30" y="89" width="315" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="yAz-nU-2q6"/>
+                        <constraint firstAttribute="height" constant="30" id="bYz-rd-cQn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="CONTINUE">
+                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="continueTapped:" destination="-1" eventType="touchUpInside" id="uG0-pF-A6K"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please turn on Location Services and Bluetooth in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh7-CW-K1l">
+                    <rect key="frame" x="30" y="20" width="315" height="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-KI-aao">
+                    <rect key="frame" x="30" y="119" width="315" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="zkI-vI-cbH"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="CANCEL">
@@ -46,28 +66,24 @@
                         <action selector="cancelTapped:" destination="-1" eventType="touchUpInside" id="1Cr-GX-zzO"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please turn on Location Services and Bluetooth in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh7-CW-K1l">
-                    <rect key="frame" x="30" y="20" width="315" height="44"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="oEo-KI-aao" firstAttribute="top" secondItem="DXc-py-i20" secondAttribute="bottom" constant="8" id="Ctn-1H-VNl"/>
-                <constraint firstItem="DXc-py-i20" firstAttribute="leading" secondItem="oEo-KI-aao" secondAttribute="leading" id="LJ3-xl-2RK"/>
+                <constraint firstItem="wfd-EO-T4w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="65L-j0-AN6"/>
+                <constraint firstItem="wfd-EO-T4w" firstAttribute="top" secondItem="Dh7-CW-K1l" secondAttribute="bottom" constant="34" id="6FE-T4-z4p"/>
+                <constraint firstAttribute="trailing" secondItem="wfd-EO-T4w" secondAttribute="trailing" constant="30" id="JQh-Sg-Qr9"/>
+                <constraint firstItem="oEo-KI-aao" firstAttribute="top" secondItem="wfd-EO-T4w" secondAttribute="bottom" id="Maz-ts-YLe"/>
                 <constraint firstItem="Dh7-CW-K1l" firstAttribute="trailing" secondItem="DXc-py-i20" secondAttribute="trailing" id="U3X-pE-MUs"/>
                 <constraint firstItem="Dh7-CW-K1l" firstAttribute="leading" secondItem="DXc-py-i20" secondAttribute="leading" id="YSW-2T-4DE"/>
-                <constraint firstAttribute="bottom" secondItem="oEo-KI-aao" secondAttribute="bottom" constant="13" id="cdk-LQ-g7A"/>
+                <constraint firstAttribute="trailing" secondItem="oEo-KI-aao" secondAttribute="trailing" constant="30" id="dee-7B-meX"/>
                 <constraint firstItem="Dh7-CW-K1l" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="erz-mE-0UD"/>
                 <constraint firstItem="Dh7-CW-K1l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="ioa-YC-U1O"/>
-                <constraint firstItem="DXc-py-i20" firstAttribute="trailing" secondItem="oEo-KI-aao" secondAttribute="trailing" id="qoL-ac-Tky"/>
+                <constraint firstItem="oEo-KI-aao" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="qii-iE-fha"/>
                 <constraint firstItem="Dh7-CW-K1l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" symbolic="YES" id="uVu-DP-PoA"/>
                 <constraint firstItem="DXc-py-i20" firstAttribute="top" secondItem="Dh7-CW-K1l" secondAttribute="bottom" constant="5" id="xdX-CN-MQn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="53.600000000000001" y="-183.95802098950526"/>
+            <point key="canvasLocation" x="53.600000000000001" y="-180.35982008995504"/>
         </view>
     </objects>
 </document>

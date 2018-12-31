@@ -12,15 +12,17 @@ import UIKit
 protocol spreoLocationServicesProtocol {
     func cancelTapped()
     func openSettingsTapped()
+    func continueLocServicesTapped(poi:IDPoi?)
 }
 
 class SpreoLocationServicesViewController: UIViewController {
     @IBOutlet weak var locationServicesLabel: UILabel!
     var delegate:spreoLocationServicesProtocol?
+    @IBOutlet weak var continueButton: UIButton!
+    var poi:IDPoi?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     @IBAction func openSettingsTapped(_ sender: Any) {
@@ -30,5 +32,8 @@ class SpreoLocationServicesViewController: UIViewController {
     @IBAction func cancelTapped(_ sender: Any) {
         self.delegate?.cancelTapped()
     }
-
+    @IBAction func continueTapped(_ sender: Any) {
+        self.delegate?.continueLocServicesTapped(poi: self.poi)
+    }
+    
 }

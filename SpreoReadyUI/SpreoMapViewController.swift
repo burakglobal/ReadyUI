@@ -193,6 +193,10 @@ class spreoMapViewController: UIViewController   {
             self.locationServices = SpreoLocationServicesViewController(nibName: "SpreoLocationServicesViewController", bundle: nil)
             self.locationServices?.view.dropShadow()
             self.locationServices?.delegate = self
+            if (poi != nil) {
+                self.locationServices?.poi = poi
+                self.locationServices?.continueButton.isHidden = false
+            }
             self.locationServices?.view.clipsToBounds = true
             let leftX = self.view.frame.width-40
             self.locationServices?.view.frame = CGRect(x: 40, y: 0, width: leftX, height:174)
@@ -203,7 +207,7 @@ class spreoMapViewController: UIViewController   {
             
             
         }  else {
-            
+            self.mapVC?.putUserInCampus = false
             let hud = MBProgressHUD.showAdded(to: view, animated: true)
             hud.mode = MBProgressHUDMode.indeterminate
             hud.label.text = "Updating your location."
@@ -581,22 +585,38 @@ class spreoMapViewController: UIViewController   {
         checkLocation(with: false, poi:nil)
     }
     
+    func openFromTo(poi:IDPoi?) {
+        
+        if (fromToPopup != nil) {
+            fromToPopup!.view.removeFromSuperview()
+            fromToPopup = nil
+        }
+        
+        self.navButton.tag = 100
+        self.searchMenu.isHidden = true
+        self.navButton.setImage(UIImage.init(named: "navigation_on"), for: .normal)
+        fromToPopup = SpreoFromToViewController(nibName: "SpreoFromToViewController", bundle: nil)
+        fromToPopup?.view.clipsToBounds = true
+        fromToPopup?.delegate = self
+        fromToPopup?.view.dropShadow()
+        fromToPopup!.view.frame = CGRect(x: 0.0, y: self.topLayoutGuide.length, width: self.view.frame.width, height: fromToPopup!.view.frame.height)
+        fromToPopup!.view.alpha = 1
+        fromToPopup!.view.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
+        
+        if ((poi) != nil) {
+            fromToPopup?.toPoi = poi
+            fromToPopup?.destinationViewTextbox.text  = poi?.title
+        }
+        
+        self.view.addSubview((fromToPopup?.view)!)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
+            self.fromToPopup!.view.transform = .identity
+        })
+    }
+    
     @IBAction func navigationButtonTapped(_ sender: Any) {
         if (self.navButton.tag==0) {
-            self.navButton.tag = 100
-            self.searchMenu.isHidden = true
-            self.navButton.setImage(UIImage.init(named: "navigation_on"), for: .normal)
-            fromToPopup = SpreoFromToViewController(nibName: "SpreoFromToViewController", bundle: nil)
-            fromToPopup?.view.clipsToBounds = true
-            fromToPopup?.delegate = self
-            fromToPopup?.view.dropShadow()
-            fromToPopup!.view.frame = CGRect(x: 0.0, y: self.topLayoutGuide.length, width: self.view.frame.width, height: fromToPopup!.view.frame.height)
-            fromToPopup!.view.alpha = 1
-            fromToPopup!.view.transform = CGAffineTransform(scaleX: 0.8, y: 1.2)
-            self.view.addSubview((fromToPopup?.view)!)
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [],  animations: {
-                self.fromToPopup!.view.transform = .identity
-            })
+            openFromTo(poi: nil)
         } else {
             closeNavBar()
         }
@@ -1097,7 +1117,13 @@ extension spreoMapViewController:poiProtocol {
     func goTapped(poi: IDPoi) {
         closeView()
         storeSearch(searchKey: (poi.identifier)!)
-        self.startNavigationToLocation(aLocation: poi.location, from: nil)
+        openFromTo(poi: poi)
+
+        
+        
+//        self.startNavigationToLocation(aLocation: poi.location, from: nil)
+        
+        
     }
     
     func showOnTheMapTapped(poi: IDPoi) {
@@ -1199,14 +1225,24 @@ extension spreoMapViewController:spreoParkingProtocol {
 }
 
 extension spreoMapViewController:spreoLocationServicesProtocol {
+    func continueLocServicesTapped(poi: IDPoi?) {
+        closeNavBar()
+        closeLocationServices()
+
+        if ((poi) != nil) {
+            IDKit.stopUserLocationTrack()
+            openFromTo(poi: poi)
+        }
+    }
     
     func cancelTapped() {
         closeLocationServices()
     }
-    
+ 
     func closeLocationServices() {
         self.locationServices?.view.removeFromSuperview()
         self.locationServices = nil
+        self.searchMenu.isHidden = false
     }
     
     func openSettingsTapped() {
