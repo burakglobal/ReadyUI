@@ -63,6 +63,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
         fromSearchPopup = nil
         toSearchPopup?.view.removeFromSuperview()
         toSearchPopup = nil
+        IDKit.stopNavigation()
     }
     
     @IBAction func fromUnTapped(_ sender: Any) {
@@ -199,11 +200,12 @@ extension SpreoFromToViewController:spreoFromToTableViewProtocol {
         self.delegate?.showOnTheMap(poi: poi)
         closeOriginPopup()
         
-        if (fromPoi != nil && toPoi != nil) {
-            IDKit.setDisplayUserLocationIcon(false)
-            self.delegate?.showOnTheMap(poi: fromPoi)
+        if (fromPoi != nil) {
             let fromUL:IDUserLocation = IDUserLocation(campusId: fromPoi!.location.campusId, facilityId: fromPoi!.location.facilityId, outCoordinate: (fromPoi?.location.outCoordinate)!, inCoordinate: (fromPoi?.location.inCoordinate)!, andFloorId: (fromPoi?.location.floorId)!)
             IDKit.setUserLocation(fromUL)
+        }
+        
+        if (fromPoi != nil && toPoi != nil) {
             IDKit.startNavigate(to: (toPoi?.location)!, with: IDNavigationOptions.navigationOptionRegular, andDelegate: self)
         }
         
