@@ -754,8 +754,11 @@ extension spreoMapViewController : IDLocationListener {
      * - parameter aLocation: IDUserLocation class
      */
     func updateUserLocation(with aLocation: IDUserLocation!) {
-//        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
-//        } else {
+        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
+        } else {
+            if (IDKit.isDuringNavigation()) {
+//                self.mapVC!.refreshRouteLine()
+            }
 //            IDKit.setDisplayUserLocationIcon(false)
 //            if (!IDKit.isUser(inCampus: 1000)) {
 //                IDKit.setDisplayUserLocationIcon(false)
@@ -764,7 +767,7 @@ extension spreoMapViewController : IDLocationListener {
 //            } else {
 //                IDKit.setDisplayUserLocationIcon(true)
 //            }
-//        }
+        }
     }
     
     /**
@@ -1247,6 +1250,7 @@ extension spreoMapViewController:spreoLocationProtocol {
     
     func cancelTappedLocationCheckPopup() {
         self.locationPopup!.view.removeFromSuperview()
+        self.searchMenu.isHidden = false 
     }
     
 }
