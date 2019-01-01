@@ -68,8 +68,12 @@ class spreoMapViewController: UIViewController   {
         hamburgermMenu.dropShadow()
         getHistory()
         registerNotifications()
+        resetPois()
     }
 
+    func resetPois() {
+        self.mapVC?.changePOIIcons(17)
+    }
 
     func registerNotifications() {
         let nc = NotificationCenter.default
@@ -156,7 +160,7 @@ class spreoMapViewController: UIViewController   {
     override func viewDidAppear(_ animated: Bool) {
         self.mapVC?.mapReload()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // in half a second...
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // in half a second...
             self.checkLocation(with: false, poi:nil)
         }
         
