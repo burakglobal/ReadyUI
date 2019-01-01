@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 
-
 class spreoMapViewController: UIViewController   {
     
     @IBOutlet weak var hamburgerMenuTableView: UITableView!
@@ -39,7 +38,10 @@ class spreoMapViewController: UIViewController   {
     var locationPopup:SpreoLocationPopupViewController?
     var parkingPopup:SpreoParkingViewController?
     var locationServices:SpreoLocationServicesViewController?
-    
+    var timer: Timer?
+    var timerCount:Int = 0
+    var hud:MBProgressHUD?
+
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
@@ -183,85 +185,114 @@ class spreoMapViewController: UIViewController   {
     }
     
  
-    fileprivate func resultLocation(_ popup: Bool, _ poi: IDPoi?) {
-        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
-            myLocationButton.isEnabled = true
-            self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
-            IDKit.stopUserLocationTrack()
-            IDKit.setDisplayUserLocationIcon(false)
-
-            self.locationServices = SpreoLocationServicesViewController(nibName: "SpreoLocationServicesViewController", bundle: nil)
-            self.locationServices?.view.dropShadow()
-            self.locationServices?.delegate = self
-            if (poi != nil) {
-                self.locationServices?.poi = poi
-                self.locationServices?.continueButton.isHidden = false
-            }
-            self.locationServices?.view.clipsToBounds = true
-            let leftX = self.view.frame.width-40
-            self.locationServices?.view.frame = CGRect(x: 40, y: 0, width: leftX, height:174)
-            self.locationServices?.view.dropShadow()
-            self.locationServices!.view.center = self.view.center
-            self.locationServices!.view.alpha = 1
-            self.view.addSubview((self.locationServices?.view)!)
-            
-            
-        }  else {
-            self.mapVC?.putUserInCampus = false
-            let hud = MBProgressHUD.showAdded(to: view, animated: true)
-            hud.mode = MBProgressHUDMode.indeterminate
-            hud.label.text = "Updating your location."
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // in half a second...
-                hud.hide(animated: true)
-                
-                if IDKit.getUserLocation().inCoordinate.x != 0 && IDKit.isUser(inCampus: 0) {
-                    
-                    let banner = Banner(title: "Location", subtitle: "Indoor Location found!", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
-                    banner.dismissesOnTap = true
-                    banner.show(duration: 3.0)
-                    self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
-                    IDKit.setDisplayUserLocationIcon(true)
-                    
-                } else {
-                    
-                    if (popup) {
-                        self.locationPopup = SpreoLocationPopupViewController(nibName: "SpreoLocationPopupViewController", bundle: nil)
-                        self.locationPopup?.view.dropShadow()
-                        self.locationPopup?.poi = poi
-                        self.locationPopup?.delegate = self
-                        self.locationPopup?.view.clipsToBounds = true
-                        let leftX = self.view.frame.width-40
-                        self.locationPopup?.view.frame = CGRect(x: 40, y: 0, width: leftX, height:174)
-                        self.locationPopup?.view.dropShadow()
-                        self.locationPopup!.view.center = self.view.center
-                        self.locationPopup!.view.alpha = 1
-                        self.view.addSubview((self.locationPopup?.view)!)
-                        
-                    } else {
-                        let banner = Banner(title: "Location", subtitle: "No indoor location found - app will use your GPS location.\n If you are indoors, move to a new location and try again.", image: UIImage(named: "from_to_destination"), backgroundColor: UIColor.black)
-                        banner.dismissesOnTap = true
-                        banner.show(duration: 3.0)
-                    }
-                    IDKit.setDisplayUserLocationIcon(false)
-                    
-                    
-                    
-                }
-                
-                if (!IDKit.isUser(inCampus: 1000)) {
-                    IDKit.setDisplayUserLocationIcon(false)
-                    self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
-                } else {
-                    IDKit.setDisplayUserLocationIcon(true)
-                }
-                
-                self.myLocationButton.isEnabled = true
-                IDKit.stopUserLocationTrack()
-            }
+    fileprivate func checkLocationServices(_ poi: IDPoi?) {
+        myLocationButton.isEnabled = true
+        self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
+        IDKit.stopUserLocationTrack()
+        IDKit.setDisplayUserLocationIcon(false)
+        
+        self.locationServices = SpreoLocationServicesViewController(nibName: "SpreoLocationServicesViewController", bundle: nil)
+        self.locationServices?.view.dropShadow()
+        self.locationServices?.delegate = self
+        if (poi != nil) {
+            self.locationServices?.poi = poi
+            self.locationServices?.continueButton.isHidden = false
         }
+        self.locationServices?.view.clipsToBounds = true
+        let leftX = self.view.frame.width-40
+        self.locationServices?.view.frame = CGRect(x: 40, y: 0, width: leftX, height:174)
+        self.locationServices?.view.dropShadow()
+        self.locationServices!.view.center = self.view.center
+        self.locationServices!.view.alpha = 1
+        self.view.addSubview((self.locationServices?.view)!)
     }
     
+    fileprivate func resultLocation(_ popup: Bool, _ poi: IDPoi?) {
+        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
+            checkLocationServices(poi)
+        }  else {
+                self.mapVC?.putUserInCampus = false
+                hud = MBProgressHUD.showAdded(to: view, animated: true)
+                hud?.mode = MBProgressHUDMode.indeterminate
+                hud?.label.text = "Updating your location."
+//                hud?.show(animated: true)
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(fireTimer), userInfo: [ "poi" : poi as Any, "popup" : popup], repeats: true)
+         }
+    }
+    
+    func fireTimer() {
+        let userInfo = timer!.userInfo as? [String:Any]
+        var poi:IDPoi?
+        var popup:Bool?
+        
+        if !(userInfo?["poi"] is NSNull) {
+            poi = userInfo?["poi"] as? IDPoi
+        }
+        if !(userInfo?["popup"] is NSNull) {
+            popup = userInfo?["popup"] as? Bool
+        }
+        
+        
+        print("Timer fired!")
+        timerCount += 1
+        
+        if IDKit.getUserLocation().inCoordinate.x != 0 && IDKit.isUser(inCampus: 0) {
+            timerCount = 0
+            timer!.invalidate()
+            let banner = Banner(title: "Location", subtitle: "Indoor Location found!", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+            self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
+            IDKit.setDisplayUserLocationIcon(true)
+            self.resultLocationFinalStep2(poi:poi, popup:popup!)
+        }
+        
+        if timerCount == 10 {
+            timerCount = 0
+            timer!.invalidate()
+            self.resultLocationFinal(poi:poi, popup:popup!)
+        }
+    }
+
+
+    func resultLocationFinalStep2(poi:IDPoi?, popup:Bool) {
+        hud?.hide(animated: false)
+        IDKit.setDisplayUserLocationIcon(false)
+        if (!IDKit.isUser(inCampus: 0)) {
+            IDKit.setDisplayUserLocationIcon(false)
+            self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
+            self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+        } else {
+            IDKit.setDisplayUserLocationIcon(true)
+        }
+        
+        self.myLocationButton.isEnabled = true
+        IDKit.stopUserLocationTrack()
+    }
+
+    func resultLocationFinal(poi:IDPoi?,popup:Bool) {
+        if (popup) {
+            self.locationPopup = SpreoLocationPopupViewController(nibName: "SpreoLocationPopupViewController", bundle: nil)
+            self.locationPopup?.view.dropShadow()
+            self.locationPopup?.poi = poi
+            self.locationPopup?.delegate = self
+            self.locationPopup?.view.clipsToBounds = true
+            let leftX = self.view.frame.width-40
+            self.locationPopup?.view.frame = CGRect(x: 40, y: 0, width: leftX, height:174)
+            self.locationPopup?.view.dropShadow()
+            self.locationPopup!.view.center = self.view.center
+            self.locationPopup!.view.alpha = 1
+            self.view.addSubview((self.locationPopup?.view)!)
+            
+        } else {
+            
+            let banner = Banner(title: "Location", subtitle: "No indoor location found - app will use your GPS location.\n If you are indoors, move to a new location and try again.", image: UIImage(named: "from_to_destination"), backgroundColor: UIColor.black)
+            banner.dismissesOnTap = true
+            banner.show(duration: 3.0)
+        }
+        resultLocationFinalStep2(poi: poi,popup:popup)
+    }
+
     func checkLocation(with popup:Bool, poi:IDPoi?) {
         IDKit.setUserLocation(nil)
         IDKit.startUserLocationTrack()
@@ -616,7 +647,12 @@ class spreoMapViewController: UIViewController   {
     
     @IBAction func navigationButtonTapped(_ sender: Any) {
         if (self.navButton.tag==0) {
-            openFromTo(poi: nil)
+            if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
+                checkLocationServices(nil)
+                locationServices?.continueButton.isHidden = false
+            } else {
+                openFromTo(poi: nil)
+            }
         } else {
             closeNavBar()
         }
@@ -718,9 +754,17 @@ extension spreoMapViewController : IDLocationListener {
      * - parameter aLocation: IDUserLocation class
      */
     func updateUserLocation(with aLocation: IDUserLocation!) {
-        print(aLocation.outCoordinate.latitude)
-        print(aLocation.outCoordinate.longitude)
-        print(IDKit.locationServicesEnabled())
+//        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
+//        } else {
+//            IDKit.setDisplayUserLocationIcon(false)
+//            if (!IDKit.isUser(inCampus: 1000)) {
+//                IDKit.setDisplayUserLocationIcon(false)
+//                self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
+//                self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+//            } else {
+//                IDKit.setDisplayUserLocationIcon(true)
+//            }
+//        }
     }
     
     /**
@@ -761,7 +805,13 @@ extension spreoMapViewController : IDDualMapViewControllerDelegate {
     }
     
     func mapDidTapCallout(of aPoi: IDPoi!) {
-        openPoiPopup(poi: aPoi)
+        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
+            checkLocationServices(aPoi)
+            locationServices?.continueButton.isHidden = false
+        } else {
+            openFromTo(poi: aPoi)
+        }
+        
     }
     
     func mapDidTap(_ aPoi: IDPoi!) {
@@ -1228,15 +1278,15 @@ extension spreoMapViewController:spreoLocationServicesProtocol {
     func continueLocServicesTapped(poi: IDPoi?) {
         closeNavBar()
         closeLocationServices()
-
-        if ((poi) != nil) {
-            IDKit.stopUserLocationTrack()
-            openFromTo(poi: poi)
-        }
+        IDKit.stopUserLocationTrack()
+        openFromTo(poi: poi)
     }
     
     func cancelTapped() {
         closeLocationServices()
+        let banner = Banner(title: "Location", subtitle: "No Location Avaliable.", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
+        banner.dismissesOnTap = true
+        banner.show(duration: 3.0)
     }
  
     func closeLocationServices() {

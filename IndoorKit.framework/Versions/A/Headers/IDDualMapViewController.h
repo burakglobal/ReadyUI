@@ -127,7 +127,7 @@
 - (BOOL)prepareMapForVenuesForFloorId:(NSString*)floorId :(BOOL)forceToUpdate;
 - (BOOL)forcePrepareMapForVenuesForFloorId:(NSString*)floorId;
 - (void)updateUserLocationWithSmoothlyAnimation;
-
+- (void)refreshRouteLine;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // - getEntranceFloorId

@@ -176,6 +176,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
 
 extension SpreoFromToViewController:spreoFromToTableViewProtocol {
     func returnSelected(poi: IDPoi?) {
+        self.view.endEditing(true)
         if (searchType==0) {
             if (fromSearchPopup != nil) {
                 fromPoi = poi
