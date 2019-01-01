@@ -41,7 +41,7 @@ class spreoMapViewController: UIViewController   {
     var timer: Timer?
     var timerCount:Int = 0
     var hud:MBProgressHUD?
-    var campusFar = 100
+    var campusFar = 0
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")

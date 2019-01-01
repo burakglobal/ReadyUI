@@ -208,6 +208,8 @@ extension SpreoFromToViewController:spreoFromToTableViewProtocol {
         
         if (fromPoi != nil && toPoi != nil) {
             IDKit.startNavigate(to: (toPoi?.location)!, with: IDNavigationOptions.navigationOptionRegular, andDelegate: self)
+            let mapVC = IDKit.getDualMapViewController()
+            mapVC.setMapZoomSWFT(19)
         }
         
     }
