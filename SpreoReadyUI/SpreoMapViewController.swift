@@ -41,7 +41,7 @@ class spreoMapViewController: UIViewController   {
     var timer: Timer?
     var timerCount:Int = 0
     var hud:MBProgressHUD?
-
+    var campusFar = 9999999999
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
@@ -215,7 +215,6 @@ class spreoMapViewController: UIViewController   {
                 hud = MBProgressHUD.showAdded(to: view, animated: true)
                 hud?.mode = MBProgressHUDMode.indeterminate
                 hud?.label.text = "Updating your location."
-//                hud?.show(animated: true)
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(fireTimer), userInfo: [ "poi" : poi as Any, "popup" : popup], repeats: true)
          }
     }
@@ -235,15 +234,19 @@ class spreoMapViewController: UIViewController   {
         
         print("Timer fired!")
         timerCount += 1
-        
-        if IDKit.getUserLocation().inCoordinate.x != 0 && IDKit.isUser(inCampus: 0) {
+    
+        if IDKit.getUserLocation().inCoordinate.x != 0 && IDKit.isUser(inCampus: campusFar) {
             timerCount = 0
             timer!.invalidate()
-            let banner = Banner(title: "Location", subtitle: "Indoor Location found!", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
-            banner.dismissesOnTap = true
-            banner.show(duration: 3.0)
-            self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
+            if ((poi) == nil) {
+                let banner = Banner(title: "Location", subtitle: "Indoor Location found!", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+            } else {
+                
+            }
             IDKit.setDisplayUserLocationIcon(true)
+            self.mapVC?.updateUserLocationWithSmoothlyAnimation()
             self.resultLocationFinalStep2(poi:poi, popup:popup!)
         }
         
@@ -258,14 +261,21 @@ class spreoMapViewController: UIViewController   {
     func resultLocationFinalStep2(poi:IDPoi?, popup:Bool) {
         hud?.hide(animated: false)
         IDKit.setDisplayUserLocationIcon(false)
-        if (!IDKit.isUser(inCampus: 0)) {
+        self.searchMenu.isHidden = false
+        if (!IDKit.isUser(inCampus: campusFar)) {
             IDKit.setDisplayUserLocationIcon(false)
             self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
             self.mapVC?.updateUserLocationWithSmoothlyAnimation()
         } else {
             IDKit.setDisplayUserLocationIcon(true)
+            self.mapVC?.mapReload()
+            self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
         }
         
+        if (poi != nil) {
+            self.startNavigationToLocation(aLocation: poi?.location, from:nil)
+        }
+
         self.myLocationButton.isEnabled = true
         IDKit.stopUserLocationTrack()
     }
@@ -511,7 +521,7 @@ class spreoMapViewController: UIViewController   {
             banner.dismissesOnTap = true
             banner.show(duration: 1.0)
             IDKit.stopNavigation()
-        } else {  if (IDKit.getUserLocation().isIndoor) { self.mapVC?.showFloor(withID: (IDKit.getUserLocation().floorId), atFacilityWithId: IDKit.getUserLocation().facilityId) } }
+        }
     }
     
     
@@ -754,20 +764,6 @@ extension spreoMapViewController : IDLocationListener {
      * - parameter aLocation: IDUserLocation class
      */
     func updateUserLocation(with aLocation: IDUserLocation!) {
-        if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
-        } else {
-            if (IDKit.isDuringNavigation()) {
-//                self.mapVC!.refreshRouteLine()
-            }
-//            IDKit.setDisplayUserLocationIcon(false)
-//            if (!IDKit.isUser(inCampus: 1000)) {
-//                IDKit.setDisplayUserLocationIcon(false)
-//                self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
-//                self.mapVC?.updateUserLocationWithSmoothlyAnimation()
-//            } else {
-//                IDKit.setDisplayUserLocationIcon(true)
-//            }
-        }
     }
     
     /**
@@ -1004,7 +1000,20 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
                         setGoButton(isGo: true, cell: cell)
                         cell.cellImage.image = UIImage.init(named: "search_history")
                         let dict = IDKit.getInfoForFacility(withID: poi.location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-                        cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(poi.location.floorId)"
+                        
+                        var floor = [AnyHashable]()
+                        var floorTitle:String = ""
+                        floor = dict["floors_titles"] as! [AnyHashable]
+                        
+                        for i in 0..<floor.count {
+                            if (i==poi.location.floorId)
+                            {
+                                floorTitle = floor[i] as! String
+                            }
+                        }
+                        
+                        
+                        cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
                         
                         break
                     }
@@ -1047,7 +1056,21 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
             setGoButton(isGo: true, cell: cell)
             cell.delegate = self
             let dict = IDKit.getInfoForFacility(withID: self.searchResults[indexPath.row].location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(self.searchResults[indexPath.row].location.floorId)"
+            
+            
+            var floor = [AnyHashable]()
+            var floorTitle:String = ""
+            floor = dict["floors_titles"] as! [AnyHashable]
+            
+            for i in 0..<floor.count {
+                if (i==self.searchResults[indexPath.row].location.floorId)
+                {
+                    floorTitle = floor[i] as! String
+                }
+            }
+            
+            
+            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
             return cell
         } else if tableviewStatus==2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell") as! HistoryTableViewCell
@@ -1066,7 +1089,19 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
             cell.delegate = self
             setGoButton(isGo: true, cell: cell)
             let dict = IDKit.getInfoForFacility(withID: self.categoriesSearchResults[indexPath.row].location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(self.categoriesSearchResults[indexPath.row].location.floorId)"
+            
+            var floor = [AnyHashable]()
+            var floorTitle:String = ""
+            floor = dict["floors_titles"] as! [AnyHashable]
+            
+            for i in 0..<floor.count {
+                if (i==self.categoriesSearchResults[indexPath.row].location.floorId)
+                {
+                    floorTitle = floor[i] as! String
+                }
+            }
+            
+            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell") as! HistoryTableViewCell
@@ -1076,7 +1111,19 @@ extension spreoMapViewController:UITableViewDataSource, UITableViewDelegate {
             cell.delegate = self
             setGoButton(isGo: true, cell: cell)
             let dict = IDKit.getInfoForFacility(withID: self.favorites[indexPath.row].location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(self.favorites[indexPath.row].location.floorId)"
+            
+            var floor = [AnyHashable]()
+            var floorTitle:String = ""
+            floor = dict["floors_titles"] as! [AnyHashable]
+            
+            for i in 0..<floor.count {
+                if (i==self.favorites[indexPath.row].location.floorId)
+                {
+                    floorTitle = floor[i] as! String
+                }
+            }
+            
+            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
             return cell
         }
     }

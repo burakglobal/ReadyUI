@@ -201,6 +201,7 @@ extension SpreoFromToViewController:spreoFromToTableViewProtocol {
         closeOriginPopup()
         
         if (fromPoi != nil) {
+            IDKit.setDisplayUserLocationIcon(false)
             let fromUL:IDUserLocation = IDUserLocation(campusId: fromPoi!.location.campusId, facilityId: fromPoi!.location.facilityId, outCoordinate: (fromPoi?.location.outCoordinate)!, inCoordinate: (fromPoi?.location.inCoordinate)!, andFloorId: (fromPoi?.location.floorId)!)
             IDKit.setUserLocation(fromUL)
         }

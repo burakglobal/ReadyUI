@@ -83,7 +83,18 @@ class SpreoFromToSearchResultsTableViewController: UITableViewController {
             cell.poiTitle.text = self.searchResults[index].title
             cell.poiTitle.tag = indexPath.row
             let dict = IDKit.getInfoForFacility(withID: self.searchResults[index].location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(self.searchResults[index].location.floorId)"
+            var floor = [AnyHashable]()
+            var floorTitle:String = ""
+            floor = dict["floors_titles"] as! [AnyHashable]
+            
+            for i in 0..<floor.count {
+                if (i==self.searchResults[index].location.floorId)
+                {
+                    floorTitle = floor[i] as! String
+                }
+            }
+            
+            cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SpreoFromToTableViewCell") as! SpreoFromToTableViewCell
@@ -102,7 +113,20 @@ class SpreoFromToSearchResultsTableViewController: UITableViewController {
                         cell.poiTitle.text = poi.title
                         cell.poiTitle.tag = index
                         let dict = IDKit.getInfoForFacility(withID: poi.location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-                        cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(poi.location.floorId)"
+                        
+                        var floor = [AnyHashable]()
+                        var floorTitle:String = ""
+                        floor = dict["floors_titles"] as! [AnyHashable]
+                        
+                        for i in 0..<floor.count {
+                            if (i==poi.location.floorId)
+                            {
+                                floorTitle = floor[i] as! String
+                            }
+                        }
+                        
+                        cell.poiDetails.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
+                        
                     }
                 }
 

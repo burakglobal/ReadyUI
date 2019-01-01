@@ -36,7 +36,20 @@ class SpreoPoiDetailTableViewCell: UITableViewCell {
             self.poiTitle.text = poi?.title
             
             let dict = IDKit.getInfoForFacility(withID: poi!.location.facilityId, atCmpusWithID: IDKit.getCampusIDs().first!)
-            self.poiDetail.text = "\(dict["title"] ?? ""),Floor \(poi!.location.floorId)"
+            
+            
+            var floor = [AnyHashable]()
+            var floorTitle:String = ""
+            floor = dict["floors_titles"] as! [AnyHashable]
+            
+            for i in 0..<floor.count {
+                if (i==poi!.location.floorId)
+                {
+                    floorTitle = floor[i] as! String
+                }
+            }
+            
+            self.poiDetail.text = "\(dict["title"] ?? ""),Floor \(floorTitle)"
             self.poiDistance.text = ""
             self.poiParking.text = ""
             self.poiType.text = ""
