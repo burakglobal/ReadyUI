@@ -41,7 +41,7 @@ class spreoMapViewController: UIViewController   {
     var timer: Timer?
     var timerCount:Int = 0
     var hud:MBProgressHUD?
-    var campusFar = 9999999999
+    var campusFar = 100
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
@@ -270,12 +270,14 @@ class spreoMapViewController: UIViewController   {
             IDKit.setDisplayUserLocationIcon(true)
             self.mapVC?.mapReload()
             self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
+            
+            if (poi != nil) {
+                self.startNavigationToLocation(aLocation: poi?.location, from:nil)
+            }
+
         }
         
-        if (poi != nil) {
-            self.startNavigationToLocation(aLocation: poi?.location, from:nil)
-        }
-
+       
         self.myLocationButton.isEnabled = true
         IDKit.stopUserLocationTrack()
     }
