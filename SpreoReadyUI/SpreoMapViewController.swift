@@ -106,9 +106,11 @@ class spreoMapViewController: UIViewController   {
         let defaults = UserDefaults.standard
         searches.removeAll()
         if defaults.object(forKey: "searches") != nil {
-            let decoded  = defaults.object(forKey: "searches") as! Data
-            let decodedSearches = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [SpreoSearchData]
-            searches = decodedSearches
+            let decoded  = try? defaults.object(forKey: "searches") as! Data
+            if let decoded = decoded {
+                let decodedSearches = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [SpreoSearchData]
+                searches = decodedSearches
+            }
         }
         if (self.searches.count > 3) { self.searches = searches.safeSuffix(3)   }
         print(searches.debugDescription)
@@ -510,8 +512,14 @@ class spreoMapViewController: UIViewController   {
                 self.mapVC?.updateUserLocationWithSmoothlyAnimation()
                 levelPickerView.updateViewForNavigation(toFloor: location!.floorId, fromFloor: (fromUL.floorId))
                 IDKit.setDisplayUserLocationIcon(false)
-            } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
-        } else {        levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)}
+            } else {
+                levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)
+                
+            }
+        } else {
+            levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)
+            
+        }
 
         
         let res = IDKit.startNavigate(to: location!,
@@ -641,6 +649,7 @@ class spreoMapViewController: UIViewController   {
         fromToPopup = SpreoFromToViewController(nibName: "SpreoFromToViewController", bundle: nil)
         fromToPopup?.view.clipsToBounds = true
         fromToPopup?.delegate = self
+        fromToPopup?.levelpickerView = self.levelPickerView
         fromToPopup?.view.dropShadow()
         fromToPopup!.view.frame = CGRect(x: 0.0, y: self.topLayoutGuide.length, width: self.view.frame.width, height: fromToPopup!.view.frame.height)
         fromToPopup!.view.alpha = 1
@@ -1275,6 +1284,8 @@ extension spreoMapViewController:SpreoFromToProtocol {
 
             if (from != nil) {
                 self.startNavigationToLocation(aLocation: toPoi?.location, from:from?.location)
+                self.levelPickerView.updateViewForNavigation(toFloor: toPoi?.location.floorId ?? 0, fromFloor: from?.location.floorId ?? 0)
+
             } else {
                 checkLocation(with: true, poi:toPoi)
             }

@@ -33,6 +33,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     var currentTop:CGFloat?
     var searchType = 0
     var focused = 0
+    var levelpickerView:TYLevelPicker?
     
      override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     }
 
     @IBAction func closeTapped(_ sender: Any) {
+        levelpickerView?.stopNavigation()
         IDKit.stopNavigation()
         delegate?.close()
     }
@@ -57,6 +59,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     }
     
     func closeOriginPopup() {
+        levelpickerView?.stopNavigation()
         self.startNavigation.isHidden = false
         self.view.frame = CGRect(x: 0, y: self.currentTop!, width: self.view.frame.width, height: 184)
         fromSearchPopup?.view.removeFromSuperview()
@@ -208,6 +211,7 @@ extension SpreoFromToViewController:spreoFromToTableViewProtocol {
         
         if (fromPoi != nil && toPoi != nil) {
             IDKit.startNavigate(to: (toPoi?.location)!, with: IDNavigationOptions.navigationOptionRegular, andDelegate: self)
+            self.levelpickerView?.updateViewForNavigation(toFloor: toPoi?.location.floorId ?? 0, fromFloor: fromPoi?.location.floorId ?? 0)
             let mapVC = IDKit.getDualMapViewController()
             mapVC.setMapZoomSWFT(19)
         }
