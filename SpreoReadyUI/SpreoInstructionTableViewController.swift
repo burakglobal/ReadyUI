@@ -97,7 +97,7 @@ class SpreoInstructionTableViewController: UITableViewController {
      
         } else if (instDic["id"].int==7) {
             cell.instructionLabel.text = "You have arrived at your destination"
-            cell.instructionImage.image = UIImage.init(named: "destination3.png")
+            cell.instructionImage.image = UIImage.init(named: "map_destination")
         } else if (instDic["id"].int==8) {
             cell.instructionLabel.text = "Turn back"
             cell.instructionImage.image = UIImage.init(named: "turn_back.png")
@@ -115,7 +115,7 @@ class SpreoInstructionTableViewController: UITableViewController {
             cell.instructionImage.image = UIImage.init(named: "continue_to_path.png")
         } else if (instDic["id"].int==13) {
             cell.instructionLabel.text = "You have arrived at your destination"
-            cell.instructionImage.image = UIImage.init(named: "continue_to_destination")
+            cell.instructionImage.image = UIImage.init(named: "map_destination")
         }
  
         
