@@ -39,6 +39,7 @@ class SpreoInstructionPopupViewController: UIViewController {
             if (instructionController?.instructionsList != nil) {
                 instructionTableViewController?.instructionsList = (instructionController?.instructionsList)!
                 instructionTableViewController?.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: (instructionTableViewController?.view.frame.height)!)
+                instructionTableViewController?.poi = IDKit.getPOIs(withID: IDKit.getCampusIDs().first!).first
                 self.view.frame = CGRect(x: 0.0, y: self.view.frame.origin.y, width: self.view.frame.width, height: heightMe+(instructionTableViewController?.view.frame.height)!)
                 self.view.addSubview((instructionTableViewController?.view)!)
                 self.view.bringSubview(toFront: (instructionTableViewController?.view)!)

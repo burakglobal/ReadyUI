@@ -39,6 +39,7 @@ class spreoMapViewController: UIViewController   {
     var parkingPopup:SpreoParkingViewController?
     var locationServices:SpreoLocationServicesViewController?
     var timer: Timer?
+    var onDemand:Bool = true
     var timerCount:Int = 0
     var hud:MBProgressHUD?
     var campusFar = 0 //Int.max
@@ -46,7 +47,8 @@ class spreoMapViewController: UIViewController   {
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     var rfScanner:RFScanner = RFScanner.shared()
- 
+    var singleLine:GMSPolyline?
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,40 @@ class spreoMapViewController: UIViewController   {
         getHistory()
         registerNotifications()
         resetPois()
+        addLongPressGesture()
+    }
+    
+    func addLongPressGesture(){
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
+        longPress.minimumPressDuration = 5
+        self.myLocationButton.addGestureRecognizer(longPress)
+    }
+    
+    @objc func longPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == UIGestureRecognizerState.began {
+            if (onDemand) {
+                print("Long Press")
+                IDKit.startUserLocationTrack()
+                campusFar = 0
+                onDemand = false
+                myLocationButton.setTitleShadowColor(UIColor.blue, for: .normal)
+                let banner = Banner(title: "Location", subtitle: "You turned off On-Demand, from now on SDK will consistently check the location.", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.blue)
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+
+            } else {
+                print("Long Press")
+                IDKit.stopUserLocationTrack()
+                campusFar = 0
+                onDemand = true
+                myLocationButton.setTitleShadowColor(UIColor.clear, for: .normal)
+                let banner = Banner(title: "Location", subtitle: "You turned on On-Demand, from now on SDK will NOT check the location automatically.", image: UIImage(named: "from_to_start_point"), backgroundColor: UIColor.black)
+                banner.dismissesOnTap = true
+                banner.show(duration: 3.0)
+
+
+            }
+        }
     }
 
     func resetPois() {
@@ -169,7 +205,7 @@ class spreoMapViewController: UIViewController   {
         self.setLevelPicker()
         self.mapVC?.putUserInCampus = false;
         self.mapVC?.setMapZoomSWFT(17)
-        self.mapVC?.setMinZoom(16, maxZoom: 22)
+        self.mapVC?.setMinZoom(14, maxZoom: 22)
         self.mapVC?.addTiles()
     }
     
@@ -297,6 +333,11 @@ class spreoMapViewController: UIViewController   {
             IDKit.setDisplayUserLocationIcon(false)
             self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
             self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+            
+            if (!onDemand && poi != nil) {
+                self.startNavigationToLocation(aLocation: poi?.location, from:nil)
+                routeByGoogle(poi: poi)
+            }
         } else {
             IDKit.setDisplayUserLocationIcon(true)
             self.mapVC?.mapReload()
@@ -310,7 +351,10 @@ class spreoMapViewController: UIViewController   {
         
        
         self.myLocationButton.isEnabled = true
-        IDKit.stopUserLocationTrack()
+        if (onDemand) {
+            IDKit.stopUserLocationTrack()
+        }
+        
     }
 
     func resultLocationFinal(poi:IDPoi?,popup:Bool) {
@@ -338,9 +382,13 @@ class spreoMapViewController: UIViewController   {
 
     func checkLocation(with popup:Bool, poi:IDPoi?) {
         IDKit.setUserLocation(nil)
-        IDKit.startUserLocationTrack()
-        myLocationButton.isEnabled = false
-        resultLocation(popup, poi)
+        if (onDemand) {
+            IDKit.startUserLocationTrack()
+            myLocationButton.isEnabled = false
+            resultLocation(popup, poi)
+        } else {
+            resultLocationFinalStep2(poi: poi, popup: false)
+        }
     }
 
     
@@ -365,6 +413,7 @@ class spreoMapViewController: UIViewController   {
         levelPickerView.stopNavigation()
         self.searchMenu.isHidden = false
         self.instructionVC?.dismissInstruction()
+        self.singleLine?.map = nil
     }
 
     func presentPoiOnTheMap(aPoi poi: IDPoi!){
@@ -559,7 +608,7 @@ class spreoMapViewController: UIViewController   {
             let banner = Banner(title: "Navigation", subtitle: "Navigation Error! ", image: UIImage(named: "Non"), backgroundColor: UIColor.red)
             banner.dismissesOnTap = true
             banner.show(duration: 1.0)
-            IDKit.stopNavigation()
+            stopNavigation()
         }
     }
     
@@ -658,6 +707,7 @@ class spreoMapViewController: UIViewController   {
     /**
      * Presents the campus if the user is outside of it.
      */
+    
     
     // Navigation Buttons
     @IBAction func myLocationTapped(_ sender: Any) {
@@ -1334,7 +1384,46 @@ extension spreoMapViewController:spreoLocationProtocol {
     
     func continueTapped(poi:IDPoi) {
         self.locationPopup!.view.removeFromSuperview()
-        self.startNavigationToLocation(aLocation: poi.location, from:nil)
+        routeByGoogle(poi: poi)
+        self.startNavigationToLocation(aLocation: IDKit.getNearbyParking(for: poi)?.location, from:nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // in half a second...
+            self.mapVC?.showMyPosition()
+        }
+    }
+
+    func routeByGoogle(poi:IDPoi?) {
+        let url = NSURL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(IDKit.getUserLocation().outCoordinate.latitude),\(IDKit.getUserLocation().outCoordinate.longitude)&destination=\(IDKit.getNearbyParking(for: poi)!.location.outCoordinate.latitude),\(IDKit.getNearbyParking(for: poi)!.location.outCoordinate.longitude)&key=AIzaSyDpqFp7qs7mrmd9zgtLnI4k6Fid1v9zxv0")
+     
+        let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) -> Void in
+            
+            do {
+                if data != nil {
+                    let dic = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as!  [String:AnyObject]
+                              print(dic)
+                    
+                    let status = dic["status"] as! String
+                    var routesArray:String!
+                    if status == "OK" {
+                        routesArray = ((((dic["routes"]!as! [Any])[0] as! [String:Any])["overview_polyline"] as! [String:Any])["points"] as! String)
+                        print("routesArray: \(String(describing: routesArray))")
+                    }
+                    
+                    DispatchQueue.main.async {
+                        let path = GMSPath.init(fromEncodedPath: routesArray!)
+                        self.singleLine = GMSPolyline.init(path: path)
+                        self.singleLine!.strokeWidth = 6.0
+                        self.singleLine!.strokeColor = UIColor.orange
+                        self.singleLine!.map = self.mapVC?.mapView_
+                    }
+                    
+                }
+            } catch {
+                print("Error")
+            }
+        }
+        
+        task.resume()
     }
     
     func cancelTappedLocationCheckPopup() {

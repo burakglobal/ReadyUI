@@ -7,23 +7,34 @@
 //
 
 import UIKit
-
 class SpreoInstructionTableViewController: UITableViewController {
     var instructionsList:IDCombinedRoute?
     var instructions = [Any]()
     var instructionsJson = [JSON]()
+    var poi:IDPoi?
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "SpreoInstructionTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "instructionCell")
         
         if (instructionsList != nil) {
+            
+            if (!IDKit.isUser(inCampus: 0)) {
+                let jsonObject: [String: Any] = [
+                    "id": 20
+                ]
+                let desJson:JSON = JSON(jsonObject)
+                instructionsJson.append(desJson)
+            }
+            
+            
             for ins in (instructionsList?.routes)! {
                 if ins is IDCombinedRoute {
                     let d:IDCombinedRoute = ins as! IDCombinedRoute
                     print(d.getFirstRoute()?.instructions as Any)
                     for ge in (d.getFirstRoute()?.instructions)! {
                         instructions.append(ge)
+                        instructionsJson.append(JSON(ge))
                     }
                 }
             }
@@ -31,7 +42,8 @@ class SpreoInstructionTableViewController: UITableViewController {
             self.clearsSelectionOnViewWillAppear = true
             self.tableView.isUserInteractionEnabled = true
             print(instructions)
-            instructionsJson = JSON(instructions).arrayValue
+//            instructionsJson = JSON(instructions).arrayValue
+            
         }
 
         let jsonObject: [String: Any] = [
@@ -112,7 +124,7 @@ class SpreoInstructionTableViewController: UITableViewController {
             cell.instructionImage.image = UIImage.init(named: "turn_back.png")
         } else if (instDic["id"].int==9) {
             cell.instructionLabel.text = "Recalculate"
-            cell.instructionImage.image = UIImage.init(named: "destination3.png")
+            cell.instructionImage.image = UIImage.init(named: "map_destination.png")
         } else if (instDic["id"].int==10) {
             cell.instructionLabel.text = "Go straight"
             cell.instructionImage.image = UIImage.init(named: "continue_to_destination.png")
@@ -125,10 +137,41 @@ class SpreoInstructionTableViewController: UITableViewController {
         } else if (instDic["id"].int==13) {
             cell.instructionLabel.text = "You have arrived at your destination"
             cell.instructionImage.image = UIImage.init(named: "map_destination")
+        } else if (instDic["id"].int==20) {
+            cell.instructionLabel.text = "Follow the Google Route to closest Parking Location (Tap to open Google)"
+            cell.instructionImage.image = UIImage.init(named: "map_destination")
         }
  
         
          return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ins = instructionsJson[0]
+        if (ins["id"].intValue==20) {
+            if let poi=poi {
+                if  let url:URL = URL(string: "https://www.google.com/maps/place/\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.latitude ?? 0.0000),\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.longitude ?? 0.0000)") {
+                if UIApplication.shared.canOpenURL(url) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    //If you want handle the completion block than
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                            print("Open url : \(success)")
+                        })
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
+              }
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true )
+
+        
     }
     
 }
