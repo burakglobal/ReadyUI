@@ -935,7 +935,7 @@ extension spreoMapViewController : IDNavigationDelegate {
      * This method is to be called when navigation engine will play instruction sound
      */
     func playInstructionSound() {
-        self.instructionVC?.playInstructionSound()
+//        self.instructionVC?.playInstructionSound()
     }
     
     /**

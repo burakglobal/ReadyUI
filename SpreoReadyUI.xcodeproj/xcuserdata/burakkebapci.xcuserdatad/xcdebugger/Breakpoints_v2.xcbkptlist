@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "568167923.982541"
+            timestampString = "568169770.25129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
             endingLineNumber = "291"
-            landmarkName = "resultLocationFinalStep2(poi:popup:)"
-            landmarkType = "7">
+            landmarkName = "spreoMapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "568167923.983076"
+            timestampString = "568169770.251389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "253"
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "568167923.983488"
+            timestampString = "568169770.251464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "289"
             endingLineNumber = "289"
-            landmarkName = "resultLocationFinalStep2(poi:popup:)"
+            landmarkName = "fireTimer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "568167923.983813"
+            timestampString = "568169770.251518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "285"
             endingLineNumber = "285"
-            landmarkName = "spreoMapViewController"
-            landmarkType = "3">
+            landmarkName = "fireTimer()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpreoReadyUI/SpreoMapViewController.swift"
-            timestampString = "568167923.9841551"
+            timestampString = "568169770.251568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1395"
             endingLineNumber = "1395"
-            landmarkName = "devices(inRange:)"
-            landmarkType = "7">
+            landmarkName = "spreoMapViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

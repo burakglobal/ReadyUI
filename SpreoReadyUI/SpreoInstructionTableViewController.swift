@@ -83,15 +83,24 @@ class SpreoInstructionTableViewController: UITableViewController {
             cell.instructionImage.image = UIImage.init(named: "right_hall.png")
         } else if (instDic["id"].int==5) {
             
-            
+           
             if (instDic["parameter"].stringValue != "") {
-                cell.instructionLabel.text = "Go up to floor \(instDic["parameter"].stringValue)"
+                let startFloorTitle = IDKit.getInfoForFloorID(
+                    (instDic["parameter"].intValue),
+                    inFacilityWithID: instDic["facilityId"].stringValue,
+                    atCmpusWithID: instDic["campusId"].stringValue);
+                cell.instructionLabel.text = "Go up to floor \(startFloorTitle["title"] ?? "")"
                 cell.instructionImage.image = UIImage.init(named: "elevator_up.png")
             }
             
         } else if (instDic["id"].int==6) {
             if (instDic["parameter"].stringValue != "") {
-                cell.instructionLabel.text = "Go down to floor \(instDic["parameter"].stringValue)"
+                let startFloorTitle = IDKit.getInfoForFloorID(
+                    (instDic["parameter"].intValue),
+                    inFacilityWithID:  instDic["facilityId"].stringValue,
+                    atCmpusWithID: instDic["campusId"].stringValue);
+                cell.instructionLabel.text = "Go down to floor \(startFloorTitle["title"] ?? "")"
+                
                 cell.instructionImage.image = UIImage.init(named: "elevator_down.png")
             }
      
