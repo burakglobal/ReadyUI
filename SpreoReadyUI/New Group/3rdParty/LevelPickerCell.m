@@ -32,7 +32,7 @@ static NSString *const kLevelPickerCellIdentifier = @"LevelPickerCell";
     [self setSelectedStyle:model.isCurrent];
     navImageView.hidden = !model.isStart && !model.isDestination;
     if (navImageView.hidden == NO) {
-        navImageView.image = [UIImage imageNamed:model.isDestination ? @"end_point" : @"start_point"];
+        navImageView.image = [UIImage imageNamed:model.isDestination ? @"map_destination" : @"map_start_point"];
     }
 }
 

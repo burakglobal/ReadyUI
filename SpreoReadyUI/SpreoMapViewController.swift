@@ -42,7 +42,7 @@ class spreoMapViewController: UIViewController   {
     var onDemand:Bool = true
     var timerCount:Int = 0
     var hud:MBProgressHUD?
-    var campusFar = 0 //Int.max
+    var campusFar = 1000 //Int.max
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
@@ -274,12 +274,6 @@ class spreoMapViewController: UIViewController   {
     func cancelButton() {
         self.hud!.hide(animated: true)
         timerCount = 15
-//        self.resultLocationFinalStep2(poi: nil, popup: false)
-//        timer?.invalidate()
-//        self.mapVC?.addTiles()
-//        IDKit.setDisplayUserLocationIcon(false)
-//        self.mapVC?.updateUserLocationWithSmoothlyAnimation()
-
     }
 
     func fireTimer() {
@@ -308,8 +302,6 @@ class spreoMapViewController: UIViewController   {
             } else {
                 
             }
-            IDKit.setDisplayUserLocationIcon(true)
-            self.mapVC?.updateUserLocationWithSmoothlyAnimation()
             self.resultLocationFinalStep2(poi:poi, popup:popup!)
         }
         
@@ -327,7 +319,6 @@ class spreoMapViewController: UIViewController   {
 
     func resultLocationFinalStep2(poi:IDPoi?, popup:Bool) {
         hud?.hide(animated: false)
-        IDKit.setDisplayUserLocationIcon(false)
         self.searchMenu.isHidden = false
         if (!IDKit.isUser(inCampus: campusFar)) {
             IDKit.setDisplayUserLocationIcon(false)
@@ -340,8 +331,14 @@ class spreoMapViewController: UIViewController   {
             }
         } else {
             IDKit.setDisplayUserLocationIcon(true)
-            self.mapVC?.mapReload()
+            self.mapVC?.setUserMarkerDisplay(true)
             self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
+            self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 20) { // in half a second...
+                IDKit.setDisplayUserLocationIcon(false)
+                self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+            }
             
             if (poi != nil) {
                 self.startNavigationToLocation(aLocation: poi?.location, from:nil)
@@ -590,6 +587,9 @@ class spreoMapViewController: UIViewController   {
                 self.mapVC?.updateUserLocationWithSmoothlyAnimation()
                 levelPickerView.updateViewForNavigation(toFloor: location!.floorId, fromFloor: (fromUL.floorId))
                 IDKit.setDisplayUserLocationIcon(false)
+                self.mapVC?.showFloor(withID: (from?.floorId)!, atFacilityWithId: from?.facilityId)
+                self.mapVC?.setMapZoomSWFT(20)
+
             } else {
                 levelPickerView.updateViewForNavigation(toFloor: location?.floorId ?? 0, fromFloor: IDKit.getUserLocation().floorId)
                 
@@ -1384,8 +1384,13 @@ extension spreoMapViewController:spreoLocationProtocol {
     
     func continueTapped(poi:IDPoi) {
         self.locationPopup!.view.removeFromSuperview()
-        routeByGoogle(poi: poi)
-        self.startNavigationToLocation(aLocation: IDKit.getNearbyParking(for: poi)?.location, from:nil)
+        if (IDKit.getNearbyParking(for: poi) != nil) {
+            routeByGoogle(poi: poi)
+            self.startNavigationToLocation(aLocation: IDKit.getNearbyParking(for: poi)?.location, from:nil)
+        } else {
+            self.startNavigationToLocation(aLocation: poi.location, from:nil)
+        }
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // in half a second...
             self.mapVC?.showMyPosition()
@@ -1393,6 +1398,9 @@ extension spreoMapViewController:spreoLocationProtocol {
     }
 
     func routeByGoogle(poi:IDPoi?) {
+        if (poi==nil) {return}
+        if (IDKit.getNearbyParking(for: poi)==nil) { return }
+
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(IDKit.getUserLocation().outCoordinate.latitude),\(IDKit.getUserLocation().outCoordinate.longitude)&destination=\(IDKit.getNearbyParking(for: poi)!.location.outCoordinate.latitude),\(IDKit.getNearbyParking(for: poi)!.location.outCoordinate.longitude)&key=AIzaSyDpqFp7qs7mrmd9zgtLnI4k6Fid1v9zxv0")
      
         let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) -> Void in

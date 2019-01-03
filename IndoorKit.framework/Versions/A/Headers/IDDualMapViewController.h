@@ -128,7 +128,7 @@
 - (BOOL)forcePrepareMapForVenuesForFloorId:(NSString*)floorId;
 - (void)updateUserLocationWithSmoothlyAnimation;
 - (void)refreshRouteLine;
-
+- (void) setUserMarkerDisplay:(BOOL)userMarker;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // - getEntranceFloorId
 /*!
