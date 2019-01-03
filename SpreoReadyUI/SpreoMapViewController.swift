@@ -746,6 +746,13 @@ class spreoMapViewController: UIViewController   {
     }
     
     @IBAction func navigationButtonTapped(_ sender: Any) {
+        
+        if ((parkingPopup) != nil) {
+            self.parkingPopup!.view.removeFromSuperview()
+            self.parkingPopup = nil
+        }
+        
+        
         if (self.navButton.tag==0) {
             if (CLLocationManager.authorizationStatus() != .authorizedAlways && CLLocationManager.authorizationStatus() != .authorizedWhenInUse) {
                 checkLocationServices(nil)
@@ -788,6 +795,11 @@ class spreoMapViewController: UIViewController   {
         if stext=="" {
             closeSearch()
             return 
+        }
+        
+        if ((parkingPopup) != nil) {
+            self.parkingPopup!.view.removeFromSuperview()
+            self.parkingPopup = nil
         }
         
         let pois =  IDKit.sortPOIsDistantly(withPathID: "\(IDKit.getCampusIDs().first ?? "")", from: IDKit.getUserLocation())
