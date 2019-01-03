@@ -17,3 +17,7 @@
 //
 #import <IndoorKit/IDPoiViewRegioning.h>
 #import <IndoorKit/IDCalloutsProtocol.h>
+#import <IndoorKit/RFScanner.h>
+#import <IndoorKit/IDNavigation.h>
+#import <IndoorKit/LocationBeaconsManager.h>
+#import <IndoorKit/LocationBeacon.h>

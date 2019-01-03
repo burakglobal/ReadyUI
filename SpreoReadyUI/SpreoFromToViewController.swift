@@ -34,7 +34,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
     var searchType = 0
     var focused = 0
     var levelpickerView:TYLevelPicker?
-    
+ 
      override func viewDidLoad() {
         super.viewDidLoad()
         startNavigation.dropShadow()
@@ -42,7 +42,7 @@ class SpreoFromToViewController: UIViewController,UITextFieldDelegate {
         destinationView.dropShadow()
         self.originViewTextbox.delegate = self
         self.destinationViewTextbox.delegate = self
-    }
+     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.currentTop = self.view.frame.origin.y
@@ -227,4 +227,3 @@ extension SpreoFromToViewController : IDNavigationDelegate {
 
 
 }
-

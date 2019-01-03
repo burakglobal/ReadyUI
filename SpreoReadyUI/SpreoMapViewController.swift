@@ -41,18 +41,20 @@ class spreoMapViewController: UIViewController   {
     var timer: Timer?
     var timerCount:Int = 0
     var hud:MBProgressHUD?
-    var campusFar = 0
+    var campusFar = 0 //Int.max
     var favorites = [IDPoi]()
     let pois =  IDKit.sortPOIsAlphabetically(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
-
+    var rfScanner:RFScanner = RFScanner.shared()
+ 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         IDKit.registerToLocationListener(withDelegate: self)
         IDKit.setNavigationSimplifiedInstructionStatus(false);
-        
+        self.rfScanner.register(with: self)
+
         self.initDualMapController()
         self.initInstructionController()
         self.searchText.delegate = self
@@ -221,22 +223,41 @@ class spreoMapViewController: UIViewController   {
                 hud = MBProgressHUD.showAdded(to: view, animated: true)
                 hud?.mode = MBProgressHUDMode.indeterminate
                 hud?.label.text = "Updating your location."
+                hud?.detailsLabel.text = "Tap to cancel"
+                hud?.isUserInteractionEnabled = true
+                let tap = UITapGestureRecognizer(target: self, action: #selector(cancelButton))
+                self.hud!.addGestureRecognizer(tap)
+        }
+        
+      
+        
+        
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(fireTimer), userInfo: [ "poi" : poi as Any, "popup" : popup], repeats: true)
-         }
+ }
+
+    func cancelButton() {
+        self.hud!.hide(animated: true)
+        timerCount = 15
+//        self.resultLocationFinalStep2(poi: nil, popup: false)
+//        timer?.invalidate()
+//        self.mapVC?.addTiles()
+//        IDKit.setDisplayUserLocationIcon(false)
+//        self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+
     }
-    
+
     func fireTimer() {
-        let userInfo = timer!.userInfo as? [String:Any]
         var poi:IDPoi?
         var popup:Bool?
         
-        if !(userInfo?["poi"] is NSNull) {
-            poi = userInfo?["poi"] as? IDPoi
+        if let userInfo = timer!.userInfo as? [String:Any] {
+            if !(userInfo["poi"] is NSNull) {
+                poi = userInfo["poi"] as? IDPoi
+            }
+            if !(userInfo["popup"] is NSNull) {
+                popup = userInfo["popup"] as? Bool
+            }
         }
-        if !(userInfo?["popup"] is NSNull) {
-            popup = userInfo?["popup"] as? Bool
-        }
-        
         
         print("Timer fired!")
         timerCount += 1
@@ -256,7 +277,11 @@ class spreoMapViewController: UIViewController   {
             self.resultLocationFinalStep2(poi:poi, popup:popup!)
         }
         
-        if timerCount == 10 {
+        if (timerCount==2) {
+            self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
+        }
+        
+        if timerCount > 15 {
             timerCount = 0
             timer!.invalidate()
             self.resultLocationFinal(poi:poi, popup:popup!)
@@ -1366,6 +1391,18 @@ extension spreoMapViewController:spreoLocationServicesProtocol {
     func openSettingsTapped() {
         closeLocationServices()
         UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
+    }
+    
+    
+}
+
+extension spreoMapViewController:RFScannerDelegate {
+    func devices(inRange devices: [Any]!) {
+        print(devices.debugDescription)
+    }
+    
+    func detectionStatusChanged(_ status: IDLocationDetectionStatus) {
+        print(status)
     }
     
     
