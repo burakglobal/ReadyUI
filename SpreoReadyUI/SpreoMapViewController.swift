@@ -73,6 +73,11 @@ class spreoMapViewController: UIViewController   {
         getHistory()
         registerNotifications()
         addLongPressGesture()
+        
+        self.setLevelPicker()
+        self.mapVC?.putUserInCampus = false;
+        self.mapVC?.setMinZoom(14, maxZoom: 22)
+
     }
     
     func addLongPressGesture(){
@@ -189,26 +194,19 @@ class spreoMapViewController: UIViewController   {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.mapVC?.showAllPois()
-        
     }
     func mapWillMove() {
-        let zoomLevel:CGFloat = self.mapVC?.mapZoomLevel ?? 0.0
-        self.mapVC?.changePOIIcons(Float(zoomLevel))
+//        let zoomLevel:CGFloat = self.mapVC?.mapZoomLevel ?? 0.0
+//        self.mapVC?.changePOIIcons(Float(zoomLevel))
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.mapVC?.mapReload()
-        
+        self.mapVC?.prepareMapForVenues(forFloorId: "\(IDKit.getUserLocation().floorId)", true)
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // in half a second...
+            self.mapVC?.addTiles()
             self.checkLocation(with: false, poi:nil)
         }
-        
-        self.setLevelPicker()
-        self.mapVC?.putUserInCampus = false;
-        self.mapVC?.setMapZoomSWFT(17)
-        self.mapVC?.setMinZoom(14, maxZoom: 22)
-        self.mapVC?.addTiles()
     }
     
     func mapDidLongPress(at coordinate: CLLocationCoordinate2D, facilityId: String!, floorId: String!) {
