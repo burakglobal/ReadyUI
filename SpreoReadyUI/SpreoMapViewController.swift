@@ -72,7 +72,6 @@ class spreoMapViewController: UIViewController   {
         hamburgermMenu.dropShadow()
         getHistory()
         registerNotifications()
-        resetPois()
         addLongPressGesture()
     }
     
@@ -110,7 +109,7 @@ class spreoMapViewController: UIViewController   {
     }
 
     func resetPois() {
-        self.mapVC?.changePOIIcons(17)
+        self.mapVC?.changePOIIcons(21)
     }
 
     func registerNotifications() {
@@ -193,7 +192,10 @@ class spreoMapViewController: UIViewController   {
         self.mapVC?.showAllPois()
         
     }
-    
+    func mapWillMove() {
+        let zoomLevel:CGFloat = self.mapVC?.mapZoomLevel ?? 0.0
+        self.mapVC?.changePOIIcons(Float(zoomLevel))
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         self.mapVC?.mapReload()
@@ -330,14 +332,16 @@ class spreoMapViewController: UIViewController   {
                 routeByGoogle(poi: poi)
             }
         } else {
-            IDKit.setDisplayUserLocationIcon(true)
-            self.mapVC?.setUserMarkerDisplay(true)
-            self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
-            self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // in half a second...
+                IDKit.setDisplayUserLocationIcon(true)
+                self.mapVC?.setUserMarkerDisplay(true)
+                self.mapVC?.mapReload()
+                self.mapVC?.showFloor(withID: IDKit.getUserLocation().floorId, atFacilityWithId: IDKit.getUserLocation().facilityId)
+            }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 20) { // in half a second...
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8) { // in half a second...
                 IDKit.setDisplayUserLocationIcon(false)
-                self.mapVC?.updateUserLocationWithSmoothlyAnimation()
+                self.mapVC?.setUserMarkerDisplay(false)
             }
             
             if (poi != nil) {
@@ -910,7 +914,7 @@ extension spreoMapViewController : IDDualMapViewControllerDelegate {
             checkLocationServices(aPoi)
             locationServices?.continueButton.isHidden = false
         } else {
-            openFromTo(poi: aPoi)
+            openPoiPopup(poi: aPoi)
         }
         
     }
