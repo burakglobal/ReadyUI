@@ -1437,8 +1437,7 @@
  */
 + (void)setDashedRoute:(BOOL)aMode;
 + (void)setDictionaryForMultiPoints:(BOOL)aMode;
-
-
++ (void)setForceStop:(BOOL)forceStop;
 + (void)setColorForRoute:(UIColor*)aColor;
 + (void)setStrokeWidthForRoute:(int)aWidth;
 

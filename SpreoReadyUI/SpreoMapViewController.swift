@@ -48,6 +48,7 @@ class spreoMapViewController: UIViewController   {
     let categories =  IDKit.getPOIsCategoriesList(withPathID: "\(IDKit.getCampusIDs().first ?? "")")
     var rfScanner:RFScanner = RFScanner.shared()
     var singleLine:GMSPolyline?
+    var currentNavigation:IDPoi?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -90,6 +91,7 @@ class spreoMapViewController: UIViewController   {
         if gesture.state == UIGestureRecognizerState.began {
             if (onDemand) {
                 print("Long Press")
+                IDKit.setForceStop(false)
                 IDKit.startUserLocationTrack()
                 campusFar = 0
                 onDemand = false
@@ -100,7 +102,7 @@ class spreoMapViewController: UIViewController   {
 
             } else {
                 print("Long Press")
-                IDKit.stopUserLocationTrack()
+                self.setForceStop()
                 campusFar = 0
                 onDemand = true
                 myLocationButton.setTitleShadowColor(UIColor.clear, for: .normal)
@@ -127,7 +129,7 @@ class spreoMapViewController: UIViewController   {
     }
     override func viewDidDisappear(_ animated: Bool) {
         self.mapVC = nil
-        IDKit.stopUserLocationTrack()
+        self.setForceStop()
         IDKit.unregisterLocationListenerDelegate(self)
     }
     
@@ -232,7 +234,7 @@ class spreoMapViewController: UIViewController   {
     fileprivate func checkLocationServices(_ poi: IDPoi?) {
         myLocationButton.isEnabled = true
         self.mapVC?.centerCampusMap(withCampusId: IDKit.getCampusIDs().first)
-        IDKit.stopUserLocationTrack()
+        self.setForceStop()
         IDKit.setDisplayUserLocationIcon(false)
         
         self.locationServices = SpreoLocationServicesViewController(nibName: "SpreoLocationServicesViewController", bundle: nil)
@@ -343,6 +345,7 @@ class spreoMapViewController: UIViewController   {
             }
             
             if (poi != nil) {
+                self.currentNavigation = poi
                 self.startNavigationToLocation(aLocation: poi?.location, from:nil)
             }
 
@@ -351,7 +354,7 @@ class spreoMapViewController: UIViewController   {
        
         self.myLocationButton.isEnabled = true
         if (onDemand) {
-            IDKit.stopUserLocationTrack()
+            self.setForceStop()
         }
         
     }
@@ -382,6 +385,7 @@ class spreoMapViewController: UIViewController   {
     func checkLocation(with popup:Bool, poi:IDPoi?) {
         IDKit.setUserLocation(nil)
         if (onDemand) {
+            IDKit.setForceStop(false)
             IDKit.startUserLocationTrack()
             myLocationButton.isEnabled = false
             resultLocation(popup, poi)
@@ -413,6 +417,7 @@ class spreoMapViewController: UIViewController   {
         self.searchMenu.isHidden = false
         self.instructionVC?.dismissInstruction()
         self.singleLine?.map = nil
+        self.currentNavigation = nil
     }
 
     func presentPoiOnTheMap(aPoi poi: IDPoi!){
@@ -574,6 +579,7 @@ class spreoMapViewController: UIViewController   {
         }
         closeSearch()
         if poi != nil {
+            self.currentNavigation = poi
             self.startNavigationToLocation(aLocation: poi!.location, from: nil)
         }
     }
@@ -713,8 +719,13 @@ class spreoMapViewController: UIViewController   {
     
     // Navigation Buttons
     @IBAction func myLocationTapped(_ sender: Any) {
-        self.stopNavigation()
-        checkLocation(with: false, poi:nil)
+        
+        if (currentNavigation != nil) {
+            checkLocation(with: false, poi:currentNavigation)
+        } else {
+            checkLocation(with: false, poi:nil)
+        }
+        
     }
     
     func openFromTo(poi:IDPoi?) {
@@ -1323,11 +1334,6 @@ extension spreoMapViewController:poiProtocol {
         storeSearch(searchKey: (poi.identifier)!)
         openFromTo(poi: poi)
 
-        
-        
-//        self.startNavigationToLocation(aLocation: poi.location, from: nil)
-        
-        
     }
     
     func showOnTheMapTapped(poi: IDPoi) {
@@ -1374,7 +1380,8 @@ extension spreoMapViewController:SpreoFromToProtocol {
         self.searchMenu.isHidden = true
          if (toPoi != nil) {
              storeSearch(searchKey: (toPoi?.identifier)!)
-
+            self.currentNavigation = toPoi
+            
             if (from != nil) {
                 self.startNavigationToLocation(aLocation: toPoi?.location, from:from?.location)
                 self.levelPickerView.updateViewForNavigation(toFloor: toPoi?.location.floorId ?? 0, fromFloor: from?.location.floorId ?? 0)
@@ -1404,7 +1411,7 @@ extension spreoMapViewController:spreoLocationProtocol {
         } else {
             self.startNavigationToLocation(aLocation: poi.location, from:nil)
         }
-        
+        self.currentNavigation = poi
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // in half a second...
             self.mapVC?.showMyPosition()
@@ -1482,9 +1489,17 @@ extension spreoMapViewController:spreoLocationServicesProtocol {
     func continueLocServicesTapped(poi: IDPoi?) {
         closeNavBar()
         closeLocationServices()
-        IDKit.stopUserLocationTrack()
+        self.setForceStop()
         openFromTo(poi: poi)
     }
+    
+    func setForceStop() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // in half a second...
+            IDKit.setForceStop(true)
+            IDKit.stopUserLocationTrack()
+        }
+    }
+    
     
     func cancelTapped() {
         closeLocationServices()
