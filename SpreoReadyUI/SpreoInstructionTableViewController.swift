@@ -19,13 +19,13 @@ class SpreoInstructionTableViewController: UITableViewController {
         
         if (instructionsList != nil) {
             
-            if (!IDKit.isUser(inCampus: 0)) {
-                let jsonObject: [String: Any] = [
-                    "id": 20
-                ]
-                let desJson:JSON = JSON(jsonObject)
-                instructionsJson.append(desJson)
-            }
+//            if (!IDKit.isUser(inCampus: 0)) {
+//                let jsonObject: [String: Any] = [
+//                    "id": 20
+//                ]
+//                let desJson:JSON = JSON(jsonObject)
+//                instructionsJson.append(desJson)
+//            }
             
             
             for ins in (instructionsList?.routes)! {
@@ -137,38 +137,39 @@ class SpreoInstructionTableViewController: UITableViewController {
         } else if (instDic["id"].int==13) {
             cell.instructionLabel.text = "You have arrived at your destination"
             cell.instructionImage.image = UIImage.init(named: "map_destination")
-        } else if (instDic["id"].int==20) {
-            cell.instructionLabel.text = "Follow the Google Route to closest Parking Location (Tap to open Google)"
-            cell.instructionImage.image = UIImage.init(named: "map_destination")
         }
+//        else if (instDic["id"].int==20) {
+//            cell.instructionLabel.text = "Follow the Google Route to closest Parking Location (Tap to open Google)"
+//            cell.instructionImage.image = UIImage.init(named: "map_destination")
+//        }
  
         
          return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ins = instructionsJson[0]
-        if (ins["id"].intValue==20) {
-            if let poi=poi {
-                if  let url:URL = URL(string: "https://www.google.com/maps/place/\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.latitude ?? 0.0000),\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.longitude ?? 0.0000)") {
-                if UIApplication.shared.canOpenURL(url) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    } else {
-                        // Fallback on earlier versions
-                    }
-                    //If you want handle the completion block than
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                            print("Open url : \(success)")
-                        })
-                    } else {
-                        // Fallback on earlier versions
-                    }
-                }
-              }
-            }
-        }
+//        let ins = instructionsJson[0]
+//        if (ins["id"].intValue==20) {
+//            if let poi=poi {
+//                if  let url:URL = URL(string: "https://www.google.com/maps/place/\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.latitude ?? 0.0000),\(IDKit.getNearbyParking(for: poi)?.location.outCoordinate.longitude ?? 0.0000)") {
+//                if UIApplication.shared.canOpenURL(url) {
+//                    if #available(iOS 10.0, *) {
+//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                    } else {
+//                        // Fallback on earlier versions
+//                    }
+//                    //If you want handle the completion block than
+//                    if #available(iOS 10.0, *) {
+//                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+//                            print("Open url : \(success)")
+//                        })
+//                    } else {
+//                        // Fallback on earlier versions
+//                    }
+//                }
+//              }
+//            }
+//        }
         tableView.deselectRow(at: indexPath, animated: true )
 
         

@@ -38,13 +38,13 @@
 			<key>id</key>
 			<string>elevator_up</string>
 			<key>text</key>
-			<string>Proceed to</string>
+			<string>Go up to floor</string>
 		</dict>
 		<dict>
 			<key>id</key>
 			<string>elevator_down</string>
 			<key>text</key>
-			<string>Proceed To</string>
+			<string>Go down to floor</string>
 		</dict>
 		<dict>
 			<key>id</key>
@@ -68,7 +68,7 @@
 			<key>id</key>
 			<string>continue_to_path</string>
 			<key>text</key>
-			<string>Proceed to the outdoor</string>
+			<string>Follow the line</string>
 		</dict>
 		<dict>
 			<key>id</key>
@@ -86,13 +86,13 @@
 			<key>id</key>
 			<string>elevator_up</string>
 			<key>text</key>
-			<string>Proceed to</string>
+			<string>Go up to floor</string>
 		</dict>
 		<dict>
 			<key>id</key>
 			<string>elevator_down</string>
 			<key>text</key>
-			<string>Proceed To</string>
+			<string>Go down to floor</string>
 		</dict>
 	</array>
 	<key>continue_instruction</key>

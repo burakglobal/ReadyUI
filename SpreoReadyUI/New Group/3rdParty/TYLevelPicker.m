@@ -181,7 +181,7 @@
     }
     
     [self setFrameWidth:containerView.frame.size.width height:containerView.frame.size.height + 16.f x:0.f y:kSetDefaultValue];
-    CGFloat yCoord = currentParentView.frame.size.height - self.frame.size.height - 150.f;
+    CGFloat yCoord = currentParentView.frame.size.height - self.frame.size.height - 120.f;
     CGFloat xCoord = currentParentView.frame.size.width - self.frame.size.width - 30.f;
     [self setFrameWidth:kSetDefaultValue height:kSetDefaultValue x:xCoord y:yCoord];
     
