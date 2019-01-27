@@ -78,7 +78,23 @@ class spreoMapViewController: UIViewController   {
         self.setLevelPicker()
         self.mapVC?.putUserInCampus = false;
         self.mapVC?.setMinZoom(14, maxZoom: 22)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData), name: NSNotification.Name(rawValue: "menu"), object: nil)
 
+    }
+    
+    func onDidReceiveData() {
+        let alert = UIAlertController(title: "Alert", message: "Would you like to exit?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            exit(0)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addLongPressGesture(){
@@ -329,7 +345,7 @@ class spreoMapViewController: UIViewController   {
             
             if (!onDemand && poi != nil) {
                 self.startNavigationToLocation(aLocation: poi?.location, from:nil)
-                routeByGoogle(poi: poi)
+//                routeByGoogle(poi: poi)
             }
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // in half a second...
@@ -1406,7 +1422,7 @@ extension spreoMapViewController:spreoLocationProtocol {
     func continueTapped(poi:IDPoi) {
         self.locationPopup!.view.removeFromSuperview()
         if (IDKit.getNearbyParking(for: poi) != nil) {
-            routeByGoogle(poi: poi)
+//            routeByGoogle(poi: poi)
             self.startNavigationToLocation(aLocation: IDKit.getNearbyParking(for: poi)?.location, from:nil)
         } else {
             self.startNavigationToLocation(aLocation: poi.location, from:nil)

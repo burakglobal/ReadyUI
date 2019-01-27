@@ -35,7 +35,7 @@ class spreoLoginViewController: UIViewController {
         
         self.activityIndicator.startAnimating()
         self.activityIndicator.backgroundColor = UIColor.black
-   
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {

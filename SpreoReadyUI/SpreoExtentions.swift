@@ -56,7 +56,7 @@ extension UINavigationItem {
         self.leftBarButtonItem = barButton
     }
     func menuSwitch() {
-        exit(0)
+        NotificationCenter.default.post(name: NSNotification.Name("menu"), object: nil, userInfo: nil)
     }
     
 }

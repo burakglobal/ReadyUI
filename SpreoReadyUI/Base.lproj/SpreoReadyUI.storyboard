@@ -329,10 +329,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Cci-80-R5O"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4M-fO-gx1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858" y="-1553"/>
+            <point key="canvasLocation" x="857.97101449275374" y="-1553.804347826087"/>
         </scene>
     </scenes>
     <resources>
