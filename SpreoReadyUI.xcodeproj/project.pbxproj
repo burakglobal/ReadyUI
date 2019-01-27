@@ -305,7 +305,7 @@
 				TargetAttributes = {
 					1AE572631F4712D600DC7159 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 9V5WREKJ4Y;
+						DevelopmentTeam = 7XT7M54V73;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -512,7 +512,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9V5WREKJ4Y;
+				DEVELOPMENT_TEAM = 7XT7M54V73;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../sdk_binary_distribution/",
 					"$(PROJECT_DIR)/SampleApp",
@@ -568,7 +568,7 @@
 					"-framework",
 					"\"CoreMotion\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.spreo.readyUI;
+				PRODUCT_BUNDLE_IDENTIFIER = co.SpreoLLC.ondemand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -585,7 +585,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9V5WREKJ4Y;
+				DEVELOPMENT_TEAM = 7XT7M54V73;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/../../sdk_binary_distribution/",
 					"$(PROJECT_DIR)/SampleApp",
@@ -641,7 +641,7 @@
 					"-framework",
 					"\"CoreMotion\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.spreo.readyUI;
+				PRODUCT_BUNDLE_IDENTIFIER = co.SpreoLLC.ondemand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "spreoReadyUI/SpreoReadyUI-Bridging-Header.h";

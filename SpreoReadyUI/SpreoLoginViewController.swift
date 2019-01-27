@@ -13,17 +13,14 @@ import UIKit
 class spreoLoginViewController: UIViewController {
     
     var activityIndicator = UIActivityIndicatorView()
-    
-     @IBOutlet weak var sampleTableView: UITableView!
-    
-    @IBOutlet weak var infoView: UITextView!
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.activityIndicatorInit()
         
         var error : IDError? = nil
-        let APIKEY = "e173ce9ec1714c1cb8fa1fd6def7044615160910552661916497521" //fe7819aaa33a45dbbb1f499f59cbb16815246399008001906839929" //"e173ce9ec1714c1cb8fa1fd6def7044615160910552661916497521"
+        let APIKEY = "e943254ee3574a61b9385e01e1d8f8631544219536492226765885"  
         IDKit.setAPIKey(APIKEY, error: &error)
         IDKit.setZipPackageWithoutMaps(true)
         IDKit.setCustomUserLocationIcon(UIImage.init(named: "blue_dot"))
