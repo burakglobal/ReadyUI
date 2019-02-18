@@ -21,11 +21,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Please allow us to use Bluetooth to Show your indoor location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow us to use Camera to Show your indoor location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow us to use GPS and iBeacons to show your location</string>
 	<key>UILaunchStoryboardName</key>
